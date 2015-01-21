@@ -1,15 +1,13 @@
 ECE368-Spring2015
 ================
-This Contains example code and material for University of Massachusetts Dartmouth Advanced Digital Design Course
+This contains example code and material for University of Massachusetts Dartmouth Advanced Digital Design Course
 
-Material is still under development and are subject to change!
+[Material is still under development and are subject to change!]
 
 ### Lab Requirements:
 * Nexyx 2 Development Board
 * ISE WebPack 14.7
 * Group with a classmate(2 per group)
-
-============
 
 ### Hardware
 
