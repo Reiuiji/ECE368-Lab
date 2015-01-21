@@ -1,6 +1,5 @@
-# ECE368-Spring2015
-===================
-
+ECE368-Spring2015
+================
 This Contains example code and material for University of Massachusetts Dartmouth Advanced Digital Design Course
 
 Material is still under development and are subject to change!
