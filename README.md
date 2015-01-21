@@ -11,7 +11,7 @@ This contains example code and material for University of Massachusetts Dartmout
 
 ### Hardware
 
-The course will focus primary on Digilent's [Nexys™2 Spartan-3E FPGA Board](digilentinc.com/Products/Detail.cfm?Prod=NEXYS2) as a learning tool.
+The course will focus primary on Digilent's [Nexys™2 Spartan-3E FPGA Board](http://www.digilentinc.com/Products/Detail.cfm?Prod=NEXYS2) as a learning tool.
 
 ### Software
 
