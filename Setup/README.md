@@ -12,4 +12,6 @@ Follow Install_Linux.pdf
 
 ### Macintosh
 
-Follow Install_Mac.pdf
+Mac is currently not supported.
+Recomend following the Linux setup if you are determined.
+
