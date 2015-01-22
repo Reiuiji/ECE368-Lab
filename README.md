@@ -22,4 +22,4 @@ The course will use Xilinx's [14.7 ISE WebPack Edition](http://www.xilinx.com/su
 
 ### license
 
-The course material presented are available under the Creative Commons Attribution NonCommercial ShareAlike (CC-NC-SA) license (http://www.tldrlegal.com/l/CC-NC-SA). <-- Subject to change 
+The course material presented are available under the MIT License.
