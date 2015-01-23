@@ -4,11 +4,11 @@ This folder contains help guidelines and scripts to help with installing Xilinx 
 
 ### Windows
 
-Follow Install_Win.pdf
+Follow [Install_Win.pdf](Install_Win.pdf)
 
 ### Linux
 
-Follow Install_Linux.pdf
+Follow [Install_Linux.pdf](Install_Linux.pdf)
 
 ### Macintosh
 
