@@ -9,3 +9,6 @@ Install_Linux.pdf: Install_Linux.tex
 
 clean:
 	latexmk -CA
+
+update:
+	mv Install_Linux.pdf ../../Install_Linux.pdf
