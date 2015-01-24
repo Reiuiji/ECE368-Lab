@@ -1,0 +1,32 @@
+###################################################
+## School: University of Massachusetts Dartmouth
+## Department: Computer and Electrical Engineering
+## Engineer: Daniel Noyes
+## 
+## Create Date:    SPRING 2015
+## Module Name:    Button Control ucf
+## Project Name:   Button Controller
+## Target Devices: Spartan-3E
+## Tool versions:  Xilinx ISE 14.7
+## Description:
+##    Nexys 2 Pin Assignments
+##    
+###################################################
+
+
+NET "CLK" LOC = B8;
+
+#LED Assignment
+NET "LED<0>" LOC = J14;
+NET "LED<1>" LOC = J15;
+NET "LED<2>" LOC = K15;
+NET "LED<3>" LOC = K14;
+
+#Switch Assignment
+NET "SW" LOC = G18;
+
+#Button Assignment
+NET "BTN<0>" LOC = B18;
+NET "BTN<1>" LOC = D18;
+NET "BTN<2>" LOC = E18;
+NET "BTN<3>" LOC = H13;
