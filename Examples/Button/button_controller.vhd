@@ -5,7 +5,7 @@
 -- 
 -- Create Date:    SPRING 2015
 -- Module Name:    Button Controller
--- Project Name:   ALU
+-- Project Name:   Button Controller
 -- Target Devices: Spartan-3E
 -- Tool versions:  Xilinx ISE 14.7
 -- Description: Switch Controller
