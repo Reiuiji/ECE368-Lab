@@ -1,0 +1,43 @@
+###################################################
+## School:     University of Massachusetts Dartmouth
+## Department: Computer and Electrical Engineering
+## Engineer:   Daniel Noyes
+## 
+## Create Date:    SPRING 2015
+## Module Name:    SevenSeg_toplevel
+## Project Name:   SevenSegmentDisplay
+## Target Devices: Spartan-3E
+## Tool versions:  Xilinx ISE 14.7
+##
+## Description: Seven Segment toplevel ucf
+##
+###################################################
+#Clock Assignment
+NET "CLK" LOC = B8; #Primary Clock
+
+##Switch Assignment
+NET "SW<0>" LOC = G18;
+NET "SW<1>" LOC = H18;
+NET "SW<2>" LOC = K18;
+NET "SW<3>" LOC = K17;
+NET "SW<4>" LOC = L14;
+NET "SW<5>" LOC = L13;
+NET "SW<6>" LOC = N17;
+NET "SW<7>" LOC = R17;
+
+##Button Assignment
+NET "BTN" LOC = B18;
+
+##7 Segment Display
+Net "SEG<0>" LOC = L18;
+Net "SEG<1>" LOC = F18;
+Net "SEG<2>" LOC = D17;
+Net "SEG<3>" LOC = D16;
+Net "SEG<4>" LOC = G14;
+Net "SEG<5>" LOC = J17;
+Net "SEG<6>" LOC = H14;
+Net "DP"     LOC = C17;
+Net "AN<0>"  LOC = F17;
+Net "AN<1>"  LOC = H17;
+Net "AN<2>"  LOC = C18;
+Net "AN<3>"  LOC = F15;
