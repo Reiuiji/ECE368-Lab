@@ -121,6 +121,21 @@ Now since you have a fully setup project. we are now going to build it. When you
   \caption{Clock\_toplevel generate program file}
 \end{figure}
 
+\subsection{Building issue on a s3e500 board}
+While building the counter project, you may encounter an error while mapping the pins on a \textbf{s3e500} board. This can be resolved by changing the led pins in the ucf file with the ones commented.
+
+\begin{figure}[!htb]
+  \centering
+    \fbox{\includegraphics[width=0.5\textwidth]{images/CounterMapError.png}}
+  \caption{Counter pin mapping error}
+\end{figure}
+
+\begin{figure}[!htb]
+  \centering
+    \fbox{\includegraphics[width=0.5\textwidth]{images/CounterLeducf.png}}
+  \caption{Counter User Constraints File - Led}
+\end{figure}
+
 \subsection{Flashing the counter project onto the board}
 After build the project file you will see a green check mark appear on the "Generate Programming File". This means the project bit file was successfully created. Now it is the time to flash the Nexys 2 FPGA. In order to flash to the Nexys 2, you need to open up ISE iMPACT which can be found in \textbf{Tools -\textgreater iMPACT}.
 
