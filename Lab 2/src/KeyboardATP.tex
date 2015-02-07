@@ -1,0 +1,97 @@
+% Lab 2 LaTeX Document
+% Version 1.0
+\documentclass{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{xcolor,colortbl}
+\usepackage{longtable}
+\usepackage[pdftex,
+            pdfauthor={Daniel Noyes},
+            pdftitle={Keyboard ATP},
+            pdfsubject={ECE 368 Digital Design},
+            pdfkeywords={Digital Design},
+            pdfproducer={Latex},
+            pdfcreator={pdflatex}]{hyperref}
+
+%Define gray center for a table
+\definecolor{Gray}{gray}{0.85}
+\newcolumntype{g}{>{\columncolor{Gray}}c}
+%Quick command for multiple lines in a table cell
+\newcommand{\specialcell}[2][c]{%
+  \begin{tabular}[#1]{@{}c@{}}#2\end{tabular}}
+
+
+\begin{document}
+
+    \begin{longtable}{|c|c|c|c|g|c|c|c|c|}
+       \multicolumn{9}{l}{{{\Large Team:}}} \\
+       \multicolumn{9}{l}{{{ }}} \\
+       \hline
+       \multicolumn{9}{|c|}{{\huge \textbf{Keyboard Acceptance Test Plan}}} \\
+       \hline 
+       \textbf{Input} & \textbf{Expected} & \textbf{Result} & \textbf{Accept} &  & \textbf{Input} & \textbf{Expected} & \textbf{Result} & \textbf{Accept} \\
+       \hline
+       A & 01000001 &&&& a & 01100001 && \\
+       \hline
+       B & 01000010 &&&& b & 01100010 && \\
+       \hline
+       C & 01000011 &&&& c & 01100011 && \\
+       \hline
+       D & 01000100 &&&& d & 01100100 && \\
+       \hline
+       E & 01000101 &&&& e & 01100101 && \\
+       \hline
+       F & 01000110 &&&& f & 01100110 && \\
+       \hline
+       G & 01000111 &&&& g & 01100111 && \\
+       \hline
+       H & 01001000 &&&& h & 01101000 && \\
+       \hline
+       I & 01001001 &&&& i & 01101001 && \\
+       \hline
+       J & 01001010 &&&& j & 01101010 && \\
+       \hline
+       K & 01001011 &&&& k & 01101011 && \\
+       \hline
+       L & 01001100 &&&& l & 01101100 && \\
+       \hline
+       M & 01001101 &&&& m & 01101101 && \\
+       \hline
+       N & 01001110 &&&& n & 01101110 && \\
+       \hline
+       O & 01001111 &&&& o & 01101111 && \\
+       \hline
+       P & 01010000 &&&& p & 01110000 && \\
+       \hline
+       Q & 01010001 &&&& q & 01110001 && \\
+       \hline
+       R & 01010010 &&&& r & 01110010 && \\
+       \hline
+       S & 01010011 &&&& s & 01110011 && \\
+       \hline
+       T & 01010100 &&&& t & 01110100 && \\
+       \hline
+       U & 01010101 &&&& u & 01110101 && \\
+       \hline
+       V & 01010110 &&&& v & 01110110 && \\
+       \hline
+       W & 01010111 &&&& w & 01110111 && \\
+       \hline
+       X & 01011000 &&&& x & 01111000 && \\
+       \hline
+       Y & 01011001 &&&& y & 01111001 && \\
+       \hline
+       Z & 01011010 &&&& z & 01111010 && \\
+       \hline
+       0 & 00110000 &&&& 5 & 00110101 && \\
+       \hline
+       1 & 00110001 &&&& 6 & 00110110 && \\
+       \hline
+       2 & 00110010 &&&& 7 & 00110111 && \\
+       \hline
+       3 & 00110011 &&&& 8 & 00111000 && \\
+       \hline
+       4 & 00110100 &&&& 9 & 00111001 && \\
+       \hline
+    \end{longtable}
+
+\end{document}

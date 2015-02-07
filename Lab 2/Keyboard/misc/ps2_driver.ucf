@@ -1,0 +1,42 @@
+###################################################
+## School: University of Massachusetts Dartmouth
+## Department: Computer and Electrical Engineering
+## Engineer: Daniel Noyes
+## 
+## Create Date:    SPRING 2015
+## Module Name:    Keyboard Driver constraint file
+## Project Name:   Keyboard Driver
+## Target Devices: Spartan-3E
+## Tool versions:  Xilinx ISE 14.7
+## Description:
+##    Nexys 2 Pin Assignments
+##    
+###################################################
+
+#50MHz period constant
+NET "CLK" PERIOD = 20.0ns HIGH 50%;
+#Clock Assignment
+NET "CLK" LOC = B8 | IOSTANDARD = LVTTL;
+
+##LED ASCII Assignment
+NET "RX_DATA<0>" LOC = J14;
+NET "RX_DATA<1>" LOC = J15;
+NET "RX_DATA<2>" LOC = K15;
+NET "RX_DATA<3>" LOC = K14;
+NET "RX_DATA<4>" LOC = E16;
+NET "RX_DATA<5>" LOC = P16;
+NET "RX_DATA<6>" LOC = E4;
+NET "RX_DATA<7>" LOC = P4;
+
+##Secondary LED ASCII Assignment incase you have the s3e500
+#NET "RX_DATA<4>" LOC = E17;
+#NET "RX_DATA<5>" LOC = P15;
+#NET "RX_DATA<6>" LOC = F4;
+#NET "RX_DATA<7>" LOC = R4;
+
+##Button Assignment
+NET "RST" LOC = G18;
+
+##PS/2 Assignment
+NET "PS2_CLK"  LOC = R12;
+NET "PS2_DATA" LOC = P11;
