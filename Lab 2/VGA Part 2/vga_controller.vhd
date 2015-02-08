@@ -9,7 +9,7 @@
 -- Target Devices: Spartan-3E
 -- Tool versions:  Xilinx ISE 14.7
 -- Description: Driver a VGA display
---   Display out an resolution of 800x600@60Hz
+--   Display out an resolution of 640x480@60Hz
 -- Notes:
 --   For more information on a VGA display:
 --     https://eewiki.net/pages/viewpage.action?pageId=15925278

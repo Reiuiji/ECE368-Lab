@@ -24,7 +24,7 @@ ARCHITECTURE behavior OF VGA_TOPLEVEL_tb_vhd IS
     COMPONENT VGA_TOPLEVEL
     Port ( CLK      : in    STD_LOGIC;
            RST      : in    STD_LOGIC;
-           SW       : in    STD_LOGIC_VECTOR (7 downto 0);
+           --SW       : in    STD_LOGIC_VECTOR (7 downto 0);
            PS2_CLK  : inout STD_LOGIC;
            PS2_DATA : inout STD_LOGIC;
            HSYNC    : out   STD_LOGIC;
@@ -43,7 +43,7 @@ ARCHITECTURE behavior OF VGA_TOPLEVEL_tb_vhd IS
     SIGNAL VGARED  : STD_LOGIC_VECTOR(2 downto 0) := (others=>'0');
     SIGNAL VGAGRN  : STD_LOGIC_VECTOR(2 downto 0) := (others=>'0');
     SIGNAL VGABLU  : STD_LOGIC_VECTOR(1 downto 0) := (others=>'0');
-    SIGNAL SW      : STD_LOGIC_VECTOR(7 downto 0);
+    --SIGNAL SW      : STD_LOGIC_VECTOR(7 downto 0);
     
     -- Constants
     -- constant period : time := 20 ns; -- 25 MHz =(1/20E-9)/2
@@ -55,7 +55,7 @@ BEGIN
     -- Instantiate the Unit Under Test (UUT)
     uut: VGA_TOPLEVEL PORT MAP( CLK  => CLK,
                              RST     => RST,
-                             SW      => SW,
+                             --SW      => SW,
                              PS2_CLK => PS2_CLK,
                              PS2_DATA=> PS2_DATA,
                              HSYNC   => HSYNC,

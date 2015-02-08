@@ -32,7 +32,7 @@ end KEYCODE_TO_ASCII;
 
 architecture dataflow of KEYCODE_TO_ASCII is
 
-	type StateType is (init, idle, READ_BREAKCODE, READ_EXTENDED, READ_KEYCODE,SEND_CAPS);
+	type StateType is (init, idle, READ_BREAKCODE, READ_EXTENDED, READ_KEYCODE,SEND_COMPLETE);--,SEND_CAPS);
 	signal STATE : StateType := init;
 
 	signal ASCII_LOWER : STD_LOGIC_VECTOR (7 downto 0) := (OTHERS => '0');
@@ -121,6 +121,7 @@ begin
 			x"06" when x"14",	-- Ctrl
 			x"07" when x"11",	-- Alt
 			x"08" when x"66",	-- Back Space
+			x"20" when x"29",	-- Space
 
 			--Direction Keys -- taking up unneaded ascii codes for simplicity
 			x"01" when x"75",	-- Up
@@ -228,7 +229,7 @@ begin
 					if VALID_SIGNAL= '1' then
 						Extended := true;
 						if keycode=x"F0" then
-							state <= READ_BREAKCODE;
+							state <= READ_KEYCODE;
 						else
 							state <= idle;
 						end if;
@@ -262,9 +263,12 @@ begin
 								ascii <= ASCII_LOWER;
 							end if;
 						end if;
-						COMPLETE <= '1';
-						state <= idle;
+						state <= SEND_COMPLETE;
 					end if;
+
+				when SEND_COMPLETE =>
+					COMPLETE <= '1';
+					state <= idle;
 
 				--when SEND_CAPS =>
 				

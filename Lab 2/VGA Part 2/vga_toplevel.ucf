@@ -22,14 +22,28 @@ NET "CLK" LOC = B8 | IOSTANDARD = LVTTL;
 NET "RST" LOC = B18;
 
 ##Switch Assignment
-NET "SW<0>" LOC = G18;
-NET "SW<1>" LOC = H18;
-NET "SW<2>" LOC = K18;
-NET "SW<3>" LOC = K17;
-NET "SW<4>" LOC = L14;
-NET "SW<5>" LOC = L13;
-NET "SW<6>" LOC = N17;
-NET "SW<7>" LOC = R17;
+#NET "SW<0>" LOC = G18;
+#NET "SW<1>" LOC = H18;
+#NET "SW<2>" LOC = K18;
+#NET "SW<3>" LOC = K17;
+#NET "SW<4>" LOC = L14;
+#NET "SW<5>" LOC = L13;
+#NET "SW<6>" LOC = N17;
+#NET "SW<7>" LOC = R17;
+
+##LED ASCII Assignment
+NET "ASCII_D<0>" LOC = J14;
+NET "ASCII_D<1>" LOC = J15;
+NET "ASCII_D<2>" LOC = K15;
+NET "ASCII_D<3>" LOC = K14;
+NET "ASCII_D<4>" LOC = E16;
+NET "ASCII_D<5>" LOC = P16;
+NET "ASCII_D<6>" LOC = E4;
+NET "ASCII_D<7>" LOC = P4;
+
+##PS/2 Assignment
+NET "PS2_CLK"  LOC = R12;
+NET "PS2_DATA" LOC = P11;
 
 ##VGA Assignment
 #8-bit color(256 options), only need 3-bit just use the 510ohm connects

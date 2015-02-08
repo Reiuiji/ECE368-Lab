@@ -19,9 +19,10 @@ use work.all;
 entity VGA_TOPLEVEL is
     Port ( CLK      : in    STD_LOGIC;
            RST      : in    STD_LOGIC;
-           SW       : in    STD_LOGIC_VECTOR (7 downto 0);
+           --SW       : in    STD_LOGIC_VECTOR (7 downto 0);
            PS2_CLK  : inout STD_LOGIC;
            PS2_DATA : inout STD_LOGIC;
+           ASCII_D  : out   STD_LOGIC_VECTOR (7 downto 0); -- Debug ASCII
            HSYNC    : out   STD_LOGIC;
            VSYNC    : out   STD_LOGIC;
            VGARED   : out   STD_LOGIC_VECTOR (2 downto 0);
@@ -51,10 +52,13 @@ architecture Structural of VGA_TOPLEVEL is
 	signal DOUT_B : STD_LOGIC_VECTOR(7 downto 0):= (OTHERS => '0');
 	
 	signal FR_DATA: STD_LOGIC_VECTOR(7 downto 0):= (OTHERS => '0');
+	signal ADDR_C : STD_LOGIC_VECTOR(12 downto 0):= (OTHERS => '0');
 
 begin
+ASCII_D<= ASCII;
+ADDR_C <= vcount(8 downto 4)*X"50" + hcount(9 downto 3);
 
-ADDR_B <= vcount(8 downto 4)*X"50" + hcount(9 downto 3);
+ADDR_B <= ADDR_C(11 downto 0);
 ADDR_W <= DOUT_B(6 downto 0) & vcount(3 downto 0);
 
     U1: entity work.CLK_25MHZ
@@ -90,13 +94,13 @@ ADDR_W <= DOUT_B(6 downto 0) & vcount(3 downto 0);
     U6: entity work.BLINKER
     port map( CLK        => CLK,
               ADDR_B     => ADDR_B,
-              CURSOR_ADR => (OTHERS => '0'),
+              CURSOR_ADR => ADDR_A,
               OUTPUT     => BLINKER_OUTPUT,
               FONT_ROM   => FR_DATA);
 
     U7: entity work.VGA_BUFFER_RAM
-    port map( CLKA  => CLK,
-              WEA(0)   => ASCII_RD,
+    port map( CLKA  => ASCII_RD,
+              WEA(0)=> ASCII_WE,
               ADDRA => ADDR_A,  -- (11 DOWNTO 0)
               DINA  => ASCII,   -- (7 DOWNTO 0)
               CLKB  => CLK,
@@ -111,6 +115,12 @@ ADDR_W <= DOUT_B(6 downto 0) & vcount(3 downto 0);
               ASCII_OUT=> ASCII,
               ASCII_RD => ASCII_RD,
               ASCII_WE => ASCII_WE);
+
+    U9: entity work.CURSOR
+    port map( ASCII_CODE  => ASCII,
+              ASCII_RD    => ASCII_RD,
+              ASCII_WE    => ASCII_WE,
+              CURSOR_ADDR => ADDR_A);
 
 end Structural;
 
