@@ -33,7 +33,7 @@ architecture Structural of VGA_TOPLEVEL is
 
 	signal ASCII    : STD_LOGIC_VECTOR(7 downto 0):= (OTHERS => '0');
 	signal ASCII_RD : STD_LOGIC := '0';
-	signal ASCII_SP : STD_LOGIC := '0';
+	signal ASCII_WE : STD_LOGIC := '0';
 	
 	signal PCLK : STD_LOGIC;
 	
@@ -57,7 +57,7 @@ begin
 ADDR_B <= vcount(8 downto 4)*X"50" + hcount(9 downto 3);
 ADDR_W <= DOUT_B(6 downto 0) & vcount(3 downto 0);
 
-    U1: entity work.PIXEL_CLK
+    U1: entity work.CLK_25MHZ
     port map( CLK_IN      => CLK,
               CLK_OUT     => PCLK);
 
@@ -108,9 +108,9 @@ ADDR_W <= DOUT_B(6 downto 0) & vcount(3 downto 0);
               RST      => RST,
               PS2_CLK  => PS2_CLK,
               PS2_DATA => PS2_DATA,
-              ASCII    => ASCII,
+              ASCII_OUT=> ASCII,
               ASCII_RD => ASCII_RD,
-              ASCII_SP => ASCII_SP);
+              ASCII_WE => ASCII_WE);
 
 end Structural;
 

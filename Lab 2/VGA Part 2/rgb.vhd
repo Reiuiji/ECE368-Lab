@@ -28,9 +28,9 @@ architecture Behavioral of RGB is
 signal enb : std_logic;
 begin
 
-RED<="111" when BLANK='1' else VALUE & VALUE & VALUE;
+RED<="000" when BLANK='1' else VALUE & VALUE & VALUE;
 GRN<="000" when BLANK='1' else VALUE & VALUE & VALUE;
-BLU<="11"  when BLANK='1' else VALUE & VALUE;
+BLU<="00"  when BLANK='1' else VALUE & VALUE;
 end Behavioral;
 
 
