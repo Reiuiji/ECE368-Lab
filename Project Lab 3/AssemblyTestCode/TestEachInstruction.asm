@@ -5,18 +5,18 @@
 ;INIT
 ;========================================
 
-ADDI  R0, 11	; ADDI R0<-11		R0=11
-ADDI  R1, 22	; ADDI R1<-22		R1=22
-ADDI  R2, 33	; ADDI R2<-33		R2=33
-ADDI  R3, 44	; ADDI R3<-44		R3=44
-ADDI  R4, 55	; ADDI R3<-55		R3=55
-ADDI  R5, 66	; ADDI R3<-66		R3=66
-ADDI  R6, 77	; ADDI R3<-77		R3=77
-ADDI  R7, 88	; ADDI R3<-88		R3=88
-ADDI  R8, 99	; ADDI R3<-99		R3=99
-ADDI  R9, 111	; ADDI R3<-111		R3=111
-ADDI  R10, 122	; ADDI R3<-122		R3=122
-ADDI  R11, 133	; ADDI R3<-133		R3=133
+ADDI  R0, 0B	; ADDI R0<-11		R0=11
+ADDI  R1, 16	; ADDI R1<-22		R1=22
+ADDI  R2, 21	; ADDI R2<-33		R2=33
+ADDI  R3, 2C	; ADDI R3<-44		R3=44
+ADDI  R4, 37	; ADDI R3<-55		R3=55
+ADDI  R5, 42	; ADDI R3<-66		R3=66
+ADDI  R6, 4D	; ADDI R3<-77		R3=77
+ADDI  R7, 58	; ADDI R3<-88		R3=88
+ADDI  R8, 63	; ADDI R3<-99		R3=99
+ADDI  R9, 6F	; ADDI R3<-111		R3=111
+ADDI  R10, 7A	; ADDI R3<-122		R3=122
+ADDI  R11, 85	; ADDI R3<-133		R3=133
 
 ;========================================
 ;Primary Instructions
@@ -26,8 +26,8 @@ SUB   R1, R2	; R1 = 245
 AND   R2, R3	; R2 = 32
 OR    R3, R4	; R3 = 63
 MOV   R4, R5	; R4 = 66
-ADDI  R5, 66	; R5 = 132
-ANDI  R6, 45	; R6 = 13
+ADDI  R5, 42	; R5 = 132
+ANDI  R6, 2D	; R6 = 13
 SL    R7, 3		; R7 = 192
 SR    R8, 3		; R8 = 12
 LW    R9, 4		; MEM[4] = 111
