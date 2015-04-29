@@ -28,7 +28,7 @@ args = parser.parse_args()
 #OPERATION TYPES: based on the instruction modes
 RR_TYPE = ['ADD','SUB','AND','OR','MOV']
 I_TYPE   = ['ADDI','ANDI','SL','SR','LW','SW','JAL','RTL']
-D_TYPE  = ['LWV','SWV','LWVI','LWVD','LWVS','NOP','SWED','SWEI']
+D_TYPE  = ['LWV','SWV','LWVI','LWVD','LWVS','INT','SWED','SWEI']
 B_TYPE= ['BRA']
 
 #ID Set Types
@@ -36,7 +36,7 @@ ID_TYPE={
 		'LWV':0,'SWV':0,   #ID 00
 		'LWVD':1,'SWED':1, #ID 01
 		'LWVI':2,'SWEI':2, #ID 10
-		'LWVS':3,'NOP':3   #ID 11
+		'LWVS':3,'INT':3   #ID 11
 		}
 
 #instruction OPCODES
@@ -45,7 +45,7 @@ OPCODES={
 		"ANDI":6, "SL":7, "SR":8, "LW":9, "SW":10, "LWV":11,
 		"SWV":12, "JAL":13, "RTL":14, "BRA":15,
 		#Special Instructions
-		"LWVI":11, "LWVD":11, "LWVS":11, "NOP":12, "SWED":12, "SWEI":12
+		"LWVI":11, "LWVD":11, "LWVS":11, "INT":12, "SWED":12, "SWEI":12
 		}
 #CPU REGISTERS
 REGISTERS={
