@@ -22,6 +22,7 @@ parser = argparse.ArgumentParser(description='output the assemled code(HEX) for 
 parser.add_argument("-f", "--file", dest='file', help="input file")
 parser.add_argument("-v", "--verbose", action="store_true", dest="verbose", default=False, help="shows building it")
 parser.add_argument("-b", "--binary", action="store_true", dest="binary", default=False, help="Output Binary Equivalent")
+parser.add_argument("-c", "--coe", action="store_true", dest="coe", default=False, help="Output Coe File")
 args = parser.parse_args()
 
 #OPERATION TYPES: based on the instruction modes
@@ -247,6 +248,10 @@ def main () :
 		parser.print_help()
 		sys.exit(2)
 
+	#Force COE to be hex
+	if args.coe == True:
+		args.binary == False
+
 	print("Processing Stage 1")
 	(INPUT, LABELS) = Parse_input(args.file,args.verbose)
 	print('Stage 1 Complete')
@@ -273,9 +278,17 @@ def main () :
 			print("OM[IM]:  B [F]")
 			print(OUTPUT)
 			print("NOTES:\nO : opcode\nA : Register A\nB : Register B\nI/IM : Immediate value\nS : Shadow Register + Special Instruction")
+	elif args.coe == True:
+		print("\n\nCoe Format File:\n")
+		COE = "memory_initialization_radix=16;\nmemory_initialization_vector=\n"
+		LINES=OUTPUT.split('\n')
+		for O in LINES:
+			COE+="{0},\n".format(O)
+		COE = COE[:-4] + ";"
+		print(COE)
+	#return OUTPUT
 	else:
 		print(OUTPUT)
-	#return OUTPUT
 
 
 if __name__ == "__main__" :
