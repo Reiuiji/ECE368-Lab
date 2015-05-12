@@ -1,0 +1,184 @@
+% Project Lab 2 LaTeX Document
+% Version 1.0
+\documentclass{article}
+\usepackage{listings}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{textcomp}
+%\usepackage{xcolor,colortbl}
+\usepackage[table]{xcolor}
+\usepackage{longtable}
+\usepackage{caption}
+\usepackage{fancyvrb}
+\usepackage{placeins}
+\usepackage[pdftex,
+            pdfauthor={Paul Fortier, Daniel Noyes},
+            pdftitle={Project Demo Rubric - Spring 2015 },
+            pdfsubject={ECE 368 Digital Design},
+            pdfkeywords={Digital Design, VHDL, Nexys 2, Xilinx, ISE},
+            pdfproducer={Latex},
+            pdfcreator={pdflatex}]{hyperref}
+
+
+\captionsetup[table]{justification=centering}
+
+%Remove the number display for each section tag
+\makeatletter
+\renewcommand\@seccntformat[1]{}
+\makeatother
+
+%Define gray center for a table
+\definecolor{Gray}{gray}{0.85}
+\newcolumntype{g}{>{\columncolor{Gray}}c}
+%Quick command for multiple lines in a table cell
+\newcommand{\specialcell}[2][l]{%
+  \begin{tabular}[#1]{@{}l@{}}#2\end{tabular}}
+
+
+\begin{document}
+
+\begin{center}
+\textsc{\huge ECE 368 Digital Design - Spring 2015}\\[1cm]
+\textsc{{\LARGE Project Demonstration: (100pts)}}\\[0.5cm]
+\textsc{\Large Demo date: May $13$\textsuperscript{th}}\\[0.5cm]
+\end{center}
+
+\section{Overview and Objectives:}
+On Demo day, you will be demonstration your UMD RISC 16 bit machine. The goals for the RISC project required you to go beyond the conceptual knowledge and apply what was learned in class and develop your own RISC machine. The final product for the UMD RISC machine required the completion of the ISA on Table~\ref{tab:riscise} and Table~\ref{tab:risciseSI}. During the demo you will be needed to run a few sets of instructions and demonstrate that the machine followed through them and output the correct values in the test. You will be scored(Table~\ref{tab:grade} based upon the accuracy, performance of you device and your knowledge of the code. 
+
+
+\begin{table}[!htbp]
+\rowcolors{2}{gray!25}{white}
+  \begin{center}
+    \begin{tabular}{|c|l|l|}
+       \hline
+       \rowcolor{gray!50}
+       \multicolumn{3}{|l|}{\LARGE{\textbf{Primary Instructions:}}} \\
+       \hline
+       \rowcolor{gray!50}
+       \large{\textbf{OPCODES:}} & \large{\textbf{Operation:}} & \large{\textbf{Routine:}} \\
+       \hline 
+       \textbf{0000} & ADD  REG A, REG B & \specialcell{R[A] $\leftarrow$ R[A] + R[B] \\set status flags NZVC}  \\
+       \textbf{0001} & SUB  REG A, REG B & \specialcell{R[A] $\leftarrow$ R[A] - R[B] \\set status flags NZVC}  \\
+       \textbf{0010} & AND  REG A, REG B & \specialcell{R[A] $\leftarrow$ R[A] \& R[B] \\set status flags NZVC}  \\
+       \textbf{0011} & OR   REG A, REG B & \specialcell{R[A] $\leftarrow$ R[A] $\mid$ R[B] \\set status flags NZVC}  \\
+       \textbf{0100} & MOV  REG A, REG B & R[A] $\leftarrow$ R[B] \\
+       \textbf{0101} & ADDI REG A, IMMED & \specialcell{R[A] $\leftarrow$ R[A] + IMMED \\set status flags NZVC}  \\
+       \textbf{0110} & ANDI REG A, IMMED & \specialcell{R[A] $\leftarrow$ R[A] \& IMMED \\set status flags NZVC}  \\
+       \textbf{0111} & SL   REG A, IMMED[0..3] & \specialcell{ R[A] $\leftarrow$  R[A\textless \textless IMMED] \\ zero fill LSB C and V affected}  \\
+       \textbf{1000} & SR   REG A, IMMED[0..3] & \specialcell{R[A] $\leftarrow$ R[A\textgreater \textgreater IMMED] \\zero fill MSB}  \\
+       \textbf{1001} & LW   REG A, IMMED[7..0] & R[A] $\leftarrow$ MEM[IMMED]  \\
+       \textbf{1010} & SW   REG A, IMMED[7..0] & MEM[IMMED] $\leftarrow$ R[A]  \\
+       \textbf{1011} & LWV  REG A, REG S, IMMED[7..0] & \specialcell{R[A] $\leftarrow$ ExMEM[R[S] + IMMED] \\when ID=00}  \\
+       \textbf{1100} & SWV  REG A, REG S, IMMED[7..0] & \specialcell{ExMEM[R[S] + IMMED] $\leftarrow$ R[A] \\when ID=00}  \\
+       \textbf{1101} & JAL  IMMED[16..0] & \specialcell{STK[SP+] $\leftarrow$ [PC],\\ PC $\leftarrow$ IMMED[16..0]}  \\
+       \textbf{1110} & RTL & PC $\leftarrow$ STK[SP], SP $\leftarrow$ SP-1  \\
+       \textbf{1111} & BRA MASK, IMMED[15..0] & \specialcell{PC $\leftarrow$ [PC]+ IMMED, \\if MASK \& NVZC is true}  \\
+       \hline
+    \end{tabular}
+  \end{center}
+  \caption{UMD RISC-16 Instruction Set Architecture}
+  \label{tab:riscise}
+\end{table}
+\FloatBarrier
+
+
+\begin{table}[!htbp]
+\rowcolors{2}{gray!25}{white}
+  \begin{center}
+    \begin{tabular}{|c|l|l|}
+       \hline
+       \rowcolor{gray!50}
+       \multicolumn{3}{|l|}{\LARGE{\textbf{Special Instructions:}}} \\
+       \hline
+       \large{\textbf{OPCODES:}} & \large{\textbf{Operation:}} & \large{\textbf{Routine:}} \\
+       \textbf{1011} & \specialcell{LWVI REG A, REG S,\\ ID=10, IMMED[3..0]} & \specialcell{instmem[R[A]] $\leftarrow$ ExMEM[S[R] + IMMED]}  \\
+       \textbf{1011} & \specialcell{LWVD  REG A, REG S,\\ ID=01, IMMED[3..0]} & \specialcell{datamem[R[A]] $\leftarrow$ ExMEM[S[R] + IMMED]}  \\
+       \textbf{1011} & \specialcell{LWVS  REG A, REG S,\\ ID=11, IMMED[3..0]} & \specialcell{S[R] $\leftarrow$ R[A] + IMMED}  \\
+       \textbf{1100} & \specialcell{SWED  REG A, REG S,\\ ID=01, IMMED[3..0]} & \specialcell{ExMEM[R[S] + IMMED] $\leftarrow$ DataMem[R[A]]}  \\
+       \textbf{1100} & \specialcell{SWEI  REG A, REG S,\\ ID=10, IMMED[3..0]} & \specialcell{ExMEM[R[S] + IMMED] $\leftarrow$ InstructionMem[R[A]]}  \\
+       \textbf{1100} & \specialcell{INT  REG A, REG S,\\ ID=11, IMMED[3..0]\\REG S = 11 enable\\REG S = 00  disable} & \specialcell{Interupt Enable/Disable\\ Bit[3..0] interrupt lines}  \\
+       \hline
+    \end{tabular}
+  \end{center}
+  \caption{UMD RISC-16 Special Instructions}
+  \label{tab:risciseSI}
+\end{table}
+\FloatBarrier
+
+\section{Project Demo Grade}
+
+\begin{table}[!htb]
+  \begin{center}
+    \begin{tabular}[width=0.9\textwidth]{|l|c|l|}
+       \hline
+       Section & Value & Score\\
+       \hline 
+       \hline 
+       \rowcolor{gray!50}
+       \multicolumn{1}{|l}{\textbf{Primary Instructions:}}  & -\textbf{90}- &\\
+       \hline
+       1. Implement ADD Routine & 10 &\\
+       \hline
+       2. Implement SUB Routine & 10 &\\
+       \hline
+       3. Implement AND Routine & 10 &\\
+       \hline
+       4. Implement OR Routine & 10 &\\
+       \hline
+       5. Implement Move Routine & 5 &\\
+       \hline
+       6. Implement ADDI Routine & 5 &\\
+       \hline
+       7. Implement ANDI Routine & 5 &\\
+       \hline
+       8. Implement SL Routine & 5 &\\
+       \hline
+       9. Implement SR Routine & 5 &\\
+       \hline
+       10. Implement LW Routine & 5 &\\
+       \hline
+       11. Implement SW Routine & 5 &\\
+       \hline
+       12. Implement External Memory Access(LWV,SWV) & 5 &\\
+       \hline
+       13. Implement Jump Support(JAL,RTL) & 5 &\\
+       \hline
+       14. Implement Branching Support(BRA) & 5 &\\
+       \hline 
+       \hline 
+       \rowcolor{gray!50}
+       \multicolumn{1}{|l}{\textbf{Machine Setup:}}  & -\textbf{10}- &\\
+       \hline
+       1. Test loading a program from a file & 5 &\\
+       \hline
+       2. Test loading a program from a keyboard and execute it & 2.5 &\\
+       \hline
+       3. Fully Test your Final Design & 2.5 &\\
+       \hline 
+       \hline
+       \rowcolor{gray!50}
+       \multicolumn{1}{|l}{\textbf{Special Instructions(Extra Credit):}}  & -\textbf{30}- &\\
+       \hline
+       1. Implement Load Word Vector Instruction (LWVI) & 5 &\\
+       \hline
+       2. Implement Load Word Vector Data  (LWVD) & 5 &\\
+       \hline
+       3. Implement Load Word Vector Shadow Register (LWVS) & 5 &\\
+       \hline
+       4. Implement Store Word External from Data (SWED) & 5 &\\
+       \hline
+       5. Implement Store Word External Instruction (SWEI) & 5 &\\
+       \hline
+       6. Implement Interrupts (INT) & 5 &\\
+       \hline
+       \hline
+       \multicolumn{1}{|l}{Total} & \multicolumn{1}{c|}{100-130} &\\
+       \hline
+    \end{tabular}
+  \end{center}
+  \caption{Project Demo Breakdown}
+  \label{tab:grade}
+\end{table}
+
+\end{document}
