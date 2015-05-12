@@ -5,52 +5,52 @@
 ;INIT
 ;========================================
 
-ADDI  R0, 0B	; ADDI R0<-11		R0=11
-ADDI  R1, 16	; ADDI R1<-22		R1=22
-ADDI  R2, 21	; ADDI R2<-33		R2=33
-ADDI  R3, 2C	; ADDI R3<-44		R3=44
-ADDI  R4, 37	; ADDI R3<-55		R3=55
-ADDI  R5, 42	; ADDI R3<-66		R3=66
-ADDI  R6, 4D	; ADDI R3<-77		R3=77
-ADDI  R7, 58	; ADDI R3<-88		R3=88
-ADDI  R8, 63	; ADDI R3<-99		R3=99
-ADDI  R9, 6F	; ADDI R3<-111		R3=111
-ADDI  R10, 7A	; ADDI R3<-122		R3=122
-ADDI  R11, 85	; ADDI R3<-133		R3=133
+ADDI  R0, 0B	; R0=0x0B
+ADDI  R1, 16	; R1=0x16
+ADDI  R2, 21	; R2=0x21
+ADDI  R3, 2C	; R3=0x2c
+ADDI  R4, 37	; R4=0x37
+ADDI  R5, 42	; R5=0x42
+ADDI  R6, 4D	; R6=0x4D
+ADDI  R7, 58	; R7=0x58
+ADDI  R8, 63	; R8=0x63
+ADDI  R9, 6F	; R9=0x6F
+ADDI  R10, 7A	; R10=0x7A
+ADDI  R11, 85	; R11=0x85
 
 ;========================================
 ;Primary Instructions
 ;========================================
-ADD   R0, R1	; R0 = 33
-SUB   R1, R2	; R1 = 245
-AND   R2, R3	; R2 = 32
-OR    R3, R4	; R3 = 63
-MOV   R4, R5	; R4 = 66
-ADDI  R5, 42	; R5 = 132
-ANDI  R6, 2D	; R6 = 13
-SL    R7, 3		; R7 = 192
-SR    R8, 3		; R8 = 12
-LW    R9, 4		; MEM[4] = 111
-SW    R10, 4	; R10= 111
+ADD   R0, R1	; R0 = 0x21
+SUB   R1, R2	; R1 = 0xF4
+AND   R2, R3	; R2 = 0x20
+OR    R3, R4	; R3 = 0x3F
+MOV   R4, R5	; R4 = 0x42
+ADDI  R5, 42	; R5 = 0x84
+ANDI  R6, 2D	; R6 = 0x0D
+SL    R7, 3		; R7 = 0xC0
+SR    R8, 3		; R8 = 0x0C
+LW    R9, 4		; MEM[4] = 0x6F
+SW    R10, 4	; R10= 0x6F
 
 ;========================================
-;Jump/Branch Instructions (PC at 22)
+;Jump/Branch Instructions (PC at 23)
 ;========================================
-JAL   R0, 28 ; D028 : Leave R0 for it to assemble properly
-SUB   R11, R1
-SUB   R11, R2
-BRA   0, 34
-SUB   R11, R3
+JAL   R0, 06 ; D006 : Leave R0 for it to assemble properly
+SUB   R11, R1 ; R11 = 0x44
+SUB   R11, R2 ; R11 = 0x24
+BRA   0, 9
+SUB   R11, R3 ; R11 = 0x
 SUB   R11, R4
-ADD   R11, R5 ; JAL Jump here
-ADD   R11, R6
-ADD   R11, R7
-ADD   R11, R8
+ADD   R11, R5 ; R11 = 0x09   ; JAL Jump here
+ADD   R11, R6 ; R11 = 0x16
+ADD   R11, R7 ; R11 = 0xD6
+ADD   R11, R8 ; R11 = 0x39
 RTL   R0, 0  ;E000 : leave R0 and 0 for it to assemble properly
 SUB   R11, R9
 SUB   R11, R10 ; BRA Jump Here
 
-; R11 = 31
+; R11 = 0xB4
 
 ;========================================
 ;Special Instructions (Optional)
