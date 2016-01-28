@@ -39,7 +39,7 @@ elif [[ ! -z $APT_CHECK ]]; then
 elif [[ ! -z $PAC_CHECK ]]; then
     pacman -S libusb fxload
 elif [[ ! -z $EMERGE_CHECK ]]; then
-    emerge -pv libusb fxload
+    emerge -v libusb fxload
 else
     echo "[ERROR]: Unknown package manager"
     exit 1;
