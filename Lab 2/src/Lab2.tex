@@ -1,5 +1,5 @@
-% Lab 1 LaTeX Document
-% Version 1.0
+% Lab 2 LaTeX Document
+% Version 1.1
 \documentclass{article}
 \usepackage{listings}
 \usepackage[margin=1in]{geometry}
@@ -7,7 +7,7 @@
 \usepackage{textcomp}
 \usepackage[pdftex,
             pdfauthor={Daniel Noyes},
-            pdftitle={Laboratyory \#1 - Spring 2015 },
+            pdftitle={Laboratory \#2 - Spring 2015 },
             pdfsubject={ECE 368 Digital Design},
             pdfkeywords={Digital Design, VHDL, Nexys 2, Xilinx, ISE},
             pdfproducer={Latex},
@@ -21,10 +21,10 @@
 \begin{document}
 
 \begin{center}
-\textsc{\huge ECE 368 Digital Design - Spring 2015}\\[1cm]
-\textsc{{\LARGE Laboratory \#1: (100pts)}}\\[0.5cm]
-\textsc{\Large Lab date: February $4$\textsuperscript{th},2015}\\[0.5cm]
-\textsc{\Large Lab Report Due: Wednesday February $11$\textsuperscript{th},2015}\\[1cm]
+\textsc{\huge ECE 368 Digital Design - Spring 2016}\\[1cm]
+\textsc{{\LARGE Laboratory \#2: (100pts)}}\\[0.5cm]
+\textsc{\Large Lab date: February $5$\textsuperscript{th},2015}\\[0.5cm]
+\textsc{\Large Lab Report Due: Friday February $12$\textsuperscript{th},2015}\\[1cm]
 \end{center}
 
 \section{Overview and Objectives:}
@@ -57,8 +57,8 @@ The counter described in this section of the lab can be used to create a clock d
 
 \subsection{Creating New Project in ISE Design Suite}
 
-You will need the counter project code which can be found \href{https://github.com/reiuiji/ECE368-Lab/tree/master/Lab%201/Counter}{here} or on the class directory.
-Now lets start ISE Project Navigator. When you open up Xilinx ise project navigator, you will be greater to the welcome screen. You need to create a new project, you can do this either from the welcome window or \textbf{File -\textgreater new project}.
+You will need the counter project code which can be found \href{https://github.com/reiuiji/ECE368-Lab/tree/master/Lab%202/Counter}{here} or in the class directory.
+Now lets start ISE Project Navigator. When you open up Xilinx ISE project navigator, you will be greeted by the welcome screen. You need to create a new project, you can do this either from the welcome screen or \textbf{File -\textgreater new project}.
 
 \begin{figure}[!h]
   \centering
@@ -66,14 +66,14 @@ Now lets start ISE Project Navigator. When you open up Xilinx ise project naviga
   \caption{ISE\textsuperscript{\textregistered} Design Suite welcome page}
 \end{figure}
 
-\textbf{Steps for Creating a New Project in ISE:}
+\textbf{Steps for creating a new project in ISE:}
 \begin{enumerate}
   \item Select \textbf{File -\textgreater new project} to open the New Project Wizard.
-  \item Enter a name for the project, for this project is will be \textbf{CounterTest}
+  \item Enter a name for the project, for this project is will be \textbf{MealyTest}
   \item Enter a location where the project will be located
-  \item Enter a Description for the project
-  \item Select \textbf{HDL} in the Top-level source type
-  \item Click Next to advance to the Project Setting page
+  \item Enter a description for the project
+  \item Select \textbf{HDL} in the top-level source type
+  \item Click next to advance to the project setting page
   \item Enter the parameters for the project: \hfill \\
   Family : \textbf{Spartan3E}\\
   Device : \textbf{XC3S500E}\\
@@ -104,7 +104,7 @@ Now lets start ISE Project Navigator. When you open up Xilinx ise project naviga
 \end{figure}
 
 \subsection{Adding VHDL Source to the Project}
-After you have created the Project in ISE. You now need to import the counter source files into it. This can be done by going to \textbf{Project -\textgreater Add Source}. Select each of the six files in the Counter folder. After you imported all the files needed you will be presented with a clock\_toplevel file as depicted in the next figure.
+After you have created the project in ISE. You will now need to import the counter source files into the project. This can be done by going to \textbf{Project -\textgreater Add Source}. Select each of the six files in the Counter folder. After you imported all the files needed you will be presented with a clock\_toplevel file as depicted in the next figure.
 
 \begin{figure}[!htb]
   \centering
@@ -122,7 +122,7 @@ Now since you have a fully setup project. we are now going to build it. When you
 \end{figure}
 
 \subsection{Building issue on a s3e500 board}
-While building the counter project, you may encounter an error while mapping the pins on a \textbf{s3e500} board. This can be resolved by changing the led pins in the ucf file with the ones commented.
+While building the counter project, you may encounter an error while mapping the pins on a \textbf{s3e500} board. This can be resolved by changing the led pins in the user constraint file (UCF) file with the ones commented.
 
 \begin{figure}[!htb]
   \centering
@@ -149,11 +149,11 @@ After build the project file you will see a green check mark appear on the "Gene
 \begin{enumerate}
   \item Click on \textbf{Boundary Scan} under iMPACT Flows\
   \item Click on \textbf{Initialize Chain} on the tool bar or \textbf{File -\textgreater Initialize Chain} or Ctrl+i.
-  \item Wait till it identify Succeeded on the Initialize Chain
+  \item Wait until it ducceeded on the initialize chain
   \item Click \textbf{Yes} on "Auto Assign Configuration Files".
   \item Select the recently generated bit file in you projects folder
   \item Click \textbf{No} on "Attach SPI or BPI PROM".
-  \item On the Assign New Configuration File Select \textbf{Cancel All}.
+  \item On the assign new configuration file select \textbf{Cancel All}.
   \item Click \textbf{OK} on "Device Programming Properties".
   \item Click the \textbf{xc3s500e} chip.
   \item Double click \textbf{Program} under the iMPACT Processes
@@ -162,10 +162,10 @@ After build the project file you will see a green check mark appear on the "Gene
 \end{enumerate}
 
 \subsection{Testing the Nexys 2 Counter}
-After you have successfully flashed the Nexys 2. Go play with the Counter and see what switch and button will affect the Counter. There are three things you will need to look for. A reset, add or subtract select, and change speed of the counter.
+After you have successfully flashed the Nexys 2. Go play with the Counter and see what switch and button will affect the counter. There are three things you will need to look for on the Board. A reset, add/subtract mode, and change speed of the counter.
 
 \subsection{Counter Layout}
-As you might have played around with the device. You noticed that there were three inputs to this counter. The Counter comprised of a few entities, a clock, mux, counter, and a toplevel which binds them all together. You can see the register-transfer level(RTL) in the next figure which gives a block diagram of the project. You can generate you own RTL under \textbf{Design -\textgreater Synthesize - XST -\textgreater View RTL Schematic}
+As you might have played around with the device. You noticed that there were three inputs to this counter. The counter is comprised of a few entities, a clock, mux, counter, and a toplevel which binds them all together. You can see the register-transfer level(RTL) in the next figure which gives a block diagram of the project. You can generate you own RTL under \textbf{Design -\textgreater Synthesize - XST -\textgreater View RTL Schematic}
 
 \begin{figure}[!htb]
   \centering
@@ -180,18 +180,18 @@ As you might have played around with the device. You noticed that there were thr
 \end{figure}
 
 \subsection{Breakdown of the Counter}
-While looking at the RTL Schematic for the counter. You can see two clocks, each with a different name of clk2Hz  and clk4Hz. Both are design to toggle after a certain number of cycles, for this one the input to each clock is 50 MHz. Both clock lines will then go through a mux 2 to 1 with a select switch to choose which clock to output. The output of the mux will then go into the clock input of the counter. The counter will add or subtract one from its current count signal. The counter toplevel connects all the components together and the \textbf{counter\_topleve.ucf} will till the toplevel ports to the pins of the FPGA. Look at each file in the project and study how they work.
+While looking at the RTL schematic for the counter. You can see two clocks, each with a different name of "clk2Hz" and "clk4Hz". Both are design to toggle after a certain number of cycles, for this one the input to each clock is 50 MHz. Both clock lines will then go through a mux 2 to 1 with a select switch to choose which clock to output. The output of the mux will then go into the clock input of the counter. The counter will add or subtract one from its current count signal. The counter toplevel connects all the components together and the \textbf{counter\_topleve.ucf} will till the toplevel ports to the pins of the FPGA. Look at each file in the project and study how they work.
 
 \subsection{Counter Questions}
-While going through each segment you will be asked a few questions. These question will ask you about various parts of the lab besides these questions you will also need demonstrate your work and knowledge to the TA or Professor. Don't forget to write down your answers and put them in your lab report.
+While going through each segment you will be asked a few questions. These question will ask you about various parts of the lab besides these questions you will also need to demonstrate your work and knowledge to the TA or Professor. Don't forget to write down your answers and put them in your lab report.
 
 \begin{enumerate}
-  \item Demonstrate a working Counter. \hfill \\
+  \item Demonstrate a working counter. \hfill \\
   Reset the counter value.\\
   Change the counter speed.\\
   Change the counter to subtract instead of adding to the count.
   \item Double the clock rate in the clk4Hz file. What does it do?
-  \item What action of the clock causes the Counter to add or subtract(Rising Action? or Falling Action?).
+  \item What action of the clock causes the counter to add or subtract(Rising Action? or Falling Action?).
   \item What do you think could be different in this section of the lab?
 \end{enumerate}
 
@@ -201,7 +201,7 @@ While going through each segment you will be asked a few questions. These questi
 On the Nexys 2 board, there are four mechanical push buttons. These push buttons can be very noisy when you click them. With this in mine, you will need to debounce the push button signal. In this section of the lab you will be learning the concepts of debouncing a signal and how to implement it in your design.
 
 \subsection{Concepts of debouncing a signal}
-There are a variety of methods to debounce a signal. The method you will learn uses three flip flops, a xor gate, counter, and a bit compare. The input signal will go through one flip flop and then through another flip flop and will update it state based on the clock line. This will allow us to have two states of the signal. Each state will then go though an XOR gate to monitor the change in state. When there are two different states the xor will out a \textbf{1} to reset the counter. The counter will increment when no change occurs and the most significant bit will be used to update the last flip flop state. The last flip flop will output the debounced signal.
+There are a variety of methods to debounce a signal. The method you will learn uses three flip flops, a xor gate, counter, and a bit compare. The input signal will go through one flip flop and then through another flip flop and will update it state based on the clock line. This will allow us to have two states of the signal. Each state will then go though an XOR gate to monitor the change in state. When there are two different states the xor will output a \textbf{1} to reset the counter. The counter will increment when no change occurs and the most significant bit will be used to update the last flip flop state. The last flip flop will output the debounced signal.
 
 \begin{figure}[!htb]
   \centering
@@ -210,10 +210,10 @@ There are a variety of methods to debounce a signal. The method you will learn u
 \end{figure}
 
 \subsection{Applying the concepts into VHDL}
-With learning the concepts of debouncing a signal. Next we need to apply the concepts into VHDL. First you will be needing signals to maintain the values of the first two flip flops, the XOR output and a location for the count number. You will need to create a process routine to monitor the clock state. In the process, the flip flops will update their state when there is a \textbf{CLK'event} and with a value of \textbf{1}. This can be translated to a rising action on the clock line. Next you will need to check the flip flop states and reset the count if both flip flops have different states. The output will happen if the most significant bit will turn \textbf{1}. It is recommend reviewing the debounce.vhd source and get a understanding of what is happening.
+With learning the concepts of debouncing a signal. Next we need to apply the concepts into VHDL. First you will be needing signals to maintain the values of the first two flip flops, the XOR output and a location for the counter value. You will need to create a process routine to monitor the clock state. In the process, the flip flops will update their state when there is a \textbf{CLK'event} and with a value of \textbf{1}. This can be translated into a rising action on the clock line. Next you will need to check the flip flop states and reset the counter if both flip flops have different states. The output will happen if the most significant bit will turn \textbf{1}. It is recommend reviewing the debounce.vhd source and get a understanding of what is happening.
 
 \subsection{Building and Flashing the button debouncer project}
-Now is the time to build the seven segment display. First create a new project just like in the counter section. Add the source in the Button folder, there will be three files. Build, and flash it on the Nexys 2 dev board(refer to counter). Don't forget to check the VHDL code and see what is happening.
+Now is the time to build the button debouncer. First create a new project just like in the counter section. Add the source in the Button folder, there will be three files. Build, and flash it on the Nexys 2 dev board(refer to counter). Don't forget to check the VHDL code and see what is happening.
 
 \subsection{Button Debouncing Questions}
 
@@ -231,15 +231,15 @@ In this section, you will be learning how a 7-segment display can be incorporate
 Just refresher each 7-segment display is tied to a common cathode while one anode per display. The cathodes are a ground sink while the anode supply the power. For the display you do not want to have the number flicker. So the display should oscillate around 60Hz. Since there are four displays you need to alternate between them. This will give us 240Hz for alternating between each number without flickering.
 
 \subsection{Applying the concepts into VHDL}
-Inorder to apply this in VHDL, you need to break down the 7-segment driver into resonable chunks. First you will need a clock divider that will change a 50Mhz clock signal into 240Hz. Next you will need a 7-segment decoder, this can be don in a select statement in VHDL. The Last major part is the display driver to cycle between the 7-segment display and output the correct number. Look at the SevenSeg.vhd file to get a grasp of the concept. The top level connects the SevenSeg out to the board and helps provide values for the 7-segment display.
+In order to apply this in VHDL, you need to break down the 7-segment driver into reasonable chunks. First you will need a clock divider that will change a 50Mhz clock signal into 240Hz. Next you will need a 7-segment decoder, this can be done in a select statement in VHDL. The Last major part is the display driver to cycle between the 7-segment display and output the correct number. Look at the SevenSeg.vhd file to get a grasp of the concept. The top level connects the SevenSeg out to the board and helps provide values for the 7-segment display.
 
 \subsection{Building and Flashing the 7-segment Display project}
-Create a new project and add the source in the SevenSegment folder. Build the 7-segment display and flash it to the Nexys. Test the Seven Segment display by flipping the dip switches to control the first two displays.
+Create a new project and add the source in the "SevenSegment" folder. Build the 7-segment display and flash it to the Nexys. Test the Seven Segment display by flipping the dip switches to control the first two displays.
 
 \subsection{7-Segment Display Questions}
 
 \begin{enumerate}
-  \item Adjust the VHDL code and the I/O to make the 7-seg display "FACE"
+  \item Adjust the VHDL code I/O to make the 7-seg display "FACE"
   \item Demonstrate to the TA or professor the 7-seg display
   \item What is the clock speed in the 7-segment display driver and why?
 \end{enumerate}
@@ -284,7 +284,7 @@ In this Lab you will be using an 8-bit ALU. The ALU is a collection of operation
 Create a new project or use a existing and remove the files. Add all the source files in the ALU folder to the project. In this project you will be using the simulation utility in Xilinx. In order to run a simulation, you will need to create a Behavioral vhd file. This file will simulate the inputs to a VHDL design you are implementing. This will be able to aid in testing your code for and prone errors that may arise during your testing of the code.
 
 \subsection{Testing the ALU by simulation}
-In order to start simulation you must switch you view from Implementation to Simulation, this can be done by \textbf{Design -\textgreater View -\textgreater Simulation}. When you in simulation mode, select \textbf{ALU\_tb\_vhd}. Under the Design tab you will see ISim Simulation and two operations. Behavioral Check Syntax and Simulate Behavioral Model. Run the Simulate Behavioral Model, there will be a graph poping up with the simulation results from the test bench file.
+In order to start simulation you must switch you view from Implementation to Simulation, this can be done by \textbf{Design -\textgreater View -\textgreater Simulation}. When you in simulation mode, select \textbf{ALU\_tb\_vhd}. Under the design tab you will see ISim Simulation and two operations. \textbf{Behavioral Check Syntax} and \textbf{Simulate Behavioral Model}. Run the Simulate Behavioral Model, there will be a graph popping up with the simulation results from the test bench file.
 
 \begin{figure}[!htb]
   \centering
@@ -327,7 +327,7 @@ This part will take you the most time to accomplish out of all the sections. You
 
 \newpage
 
-\section{Lab 1 Grade}
+\section{Lab 2 Grade}
 
 \begin{table}[!htb]
   \begin{center}
@@ -335,12 +335,12 @@ This part will take you the most time to accomplish out of all the sections. You
        \hline
        Section & Description & Value & Score\\
        \hline 
-       \multicolumn{2}{|l}{\textbf{Section 1}}  & -30- &\\
+       \multicolumn{2}{|l}{\textbf{Section 1}}  & -10- &\\
        \hline
        1.1. Counter Demo & Demonstrate Counter to TA, Prof & 20 &\\
        1.2. Counter Questions & Answer Questions about the Counter & 10 &\\
        \hline
-       \multicolumn{2}{|l}{\textbf{Section 2}}  & -20- &\\
+       \multicolumn{2}{|l}{\textbf{Section 2}}  & -10- &\\
        \hline
        2.1. Button Demo & Demonstrate Button to TA, Prof & 10 &\\
        2.2. Button Questions & Answer Questions about the Button Debouncer & 10 &\\
@@ -360,7 +360,7 @@ This part will take you the most time to accomplish out of all the sections. You
        5.1. ALU User Input Demo & Demonstrate ALU to TA, Prof & 5 &\\
        5.2. ALU User Input Questions & Answer Questions about the ALU & 5 &\\
        \hline
-       \multicolumn{2}{|l}{\textbf{Lab Report}}  & -20- &\\
+       \multicolumn{2}{|l}{\textbf{Lab Report}}  & -50- &\\
        \hline
        \hline
        \multicolumn{2}{|l}{Total} & \multicolumn{1}{c|}{100} &\\
