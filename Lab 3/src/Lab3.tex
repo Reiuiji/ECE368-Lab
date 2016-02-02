@@ -1,5 +1,5 @@
-% Lab 2 LaTeX Document
-% Version 1.0
+% Lab 3 LaTeX Document
+% Version 1.1
 \documentclass{article}
 \usepackage{listings}
 \usepackage[margin=1in]{geometry}
@@ -10,7 +10,7 @@
 \usepackage{caption}
 \usepackage[pdftex,
             pdfauthor={Daniel Noyes},
-            pdftitle={Laboratory \#2 - Spring 2015 },
+            pdftitle={Laboratory \#3 - Spring 2016 },
             pdfsubject={ECE 368 Digital Design},
             pdfkeywords={Digital Design, VHDL, Nexys 2, Xilinx, ISE},
             pdfproducer={Latex},
@@ -35,14 +35,14 @@
 \begin{document}
 
 \begin{center}
-\textsc{\huge ECE 368 Digital Design - Spring 2015}\\[1cm]
-\textsc{{\LARGE Laboratory \#2: (100pts)}}\\[0.5cm]
-\textsc{\Large Lab date: February $11$\textsuperscript{th},2015}\\[0.5cm]
-\textsc{\Large Lab Report Due: Wednesday February $25$\textsuperscript{th},2015}\\[1cm]
+\textsc{\huge ECE 368 Digital Design - Spring 2016}\\[1cm]
+\textsc{{\LARGE Laboratory \#3: (100pts)}}\\[0.5cm]
+\textsc{\Large Lab date: February $12$\textsuperscript{th},2016}\\[0.5cm]
+\textsc{\Large Lab Report Due: Friday February $19$\textsuperscript{th},2016}\\[1cm]
 \end{center}
 
 \section{Overview and Objectives:}
-In this laboratory assignment, you will build upon from you previous laboratory assignment and dive deeper into VHDL. You will be able to understand IBM's Personal System 2 (PS/2) protocol. You will learn how to convert from a PS/2 input signal directly to an ascii representation. Next you will be learning the process of outputting data to a VGA display. With the VGA display, you will then learn how to create a buffer to hold characters to display on the VGA for a basic terminal. Last you will be introduced to a debug unit which will aid you in testing your design in the project.
+In this laboratory assignment, you will be building upon from your previous laboratory assignments and dive deeper into VHDL. You will be able to understand IBM's Personal System 2 (PS/2) protocol. You will learn how to convert from a PS/2 input signal directly into an ascii value. Next you will be learning the process of outputting data to a VGA display. With the VGA display, you will then learn how to create a buffer to hold characters to display on the VGA for a basic terminal.
 
 \section{Objectives for this lab:}
 \begin{itemize}
@@ -54,7 +54,6 @@ In this laboratory assignment, you will build upon from you previous laboratory 
   \item Able to change the VGA display color on the screen.
   \item Learn how to create a memory buffer for a VGA display.
   \item Understand how to generate block RAM with Xilinx\textsuperscript{\textregistered} logicore utility.
-  \item Learn how to code yourself a debug unit.
   \item Able to assemble previous concepts together.
 \end{itemize}
 
@@ -63,10 +62,6 @@ In this laboratory assignment, you will build upon from you previous laboratory 
   \item Introduction with a keyboard.
   \item VGA Display concepts part 1.
   \item VGA Display concepts part 2.
-  \item Debug Unit.
-  \item Assembling a Keyboard Debug Unit.
-  \item Extra 1: Keyboard ALU part 1
-  \item Extra 2: Keyboard ALU part 2
 \end{enumerate}
 
 \newpage
@@ -101,7 +96,7 @@ The method in which the data being transmitted from the PS/2 keyboard is through
   \caption{Common Keyboard Command Codes}
 \end{table}
 
-One the next few pages are the tables for the Keyboard Scan Codes and a ASCII Table for reference. For this lab, you will be testing the keyboard controller provided in this lab. A test bench is provided for you to gain a better understanding of what is happening in the code. I would strongly recommend analyzing the code in the \textbf{keycode\_to\_ascii.vhd} source file. In this file there are two lookup tables which will convert the keyboard scan codes directly to ASCII(upper/lower case). The file also houses a finite state machine. This state machine monitors the inputs from the keyboard driver and updates the state of the ASCII based on the order of keycode. The keyboard can only send data to the FPGA if both clock and data lines are set high which indicate the line is idle.
+One the next few pages are the tables for the keyboard scan codes and a ASCII Table for reference. For this lab, you will be testing the keyboard controller provided in this lab. A test bench is provided for you to gain a better understanding of what is happening in the code. I would strongly recommend analyzing the code in the \textbf{keycode\_to\_ascii.vhd} source file. In this file there are two lookup tables which will convert the keyboard scan codes directly to ASCII(upper/lower case). The file also houses a finite state machine. This state machine monitors the inputs from the keyboard driver and updates the state of the ASCII based on the order of keycode. The keyboard can only send data to the FPGA if both clock and data lines are set high which indicate the line is idle.
 
 \newpage
 %Keyboard Scan Codes
@@ -326,15 +321,15 @@ For the Keyboard Controller Section you will be asked several questions and demo
   \item What break codes does the keyboard send when you type \textbf{key}?
   \item What are lookup tables used in the \textbf{keycode\_to\_ascii.vhd} file?
   \item What is the state of the PS2 clock and data to indicate a idle line?
-  \item During you Hardware Acceptance Test Plan on the Keyboard, what keys were incorrect?
+  \item During your hardware acceptance test plan on the Keyboard, what keys were incorrect?
   \item Obtain the printouts of your simulation results in you lab report.
-  \item Demonstrate the Keyboard Controller with correct outputs.
+  \item Demonstrate the keyboard controller with correct outputs.
 \end{enumerate}
 
 \newpage
 
 \section{2. VGA Display concepts part 1:}
-In this section of the lab you will be learning about the basic concepts of a VGA Display. On the Nexys 2 dev board you have a VGA port with 8-bit color plus two sync signals for a horizontal sync and a vertical sync. With the 8-bit color you are able to create 256 different types of color. The Pin Layout for the VGA can be found on the next figure and in the ucf listed in the VGA Part 1 folder.
+In this section of the lab you will be learning about the basic concepts of a VGA Display. On the Nexys 2 dev board you have a VGA port with 8-bit color plus two sync signals for a horizontal sync and a vertical sync. With the 8-bit color you are able to create 256 different types of color. The pin layout for the VGA can be found on the next figure and in the ucf listed in the VGA Part 1 folder.
 
 \begin{figure}[!htbp]
   \centering
@@ -375,24 +370,24 @@ For this section you will be building the RGB Color project. After you have buil
   \caption{VGA Color RTL Diagram}
 \end{figure}
 
-\subsection{VGA Part 2: Objectives}
+\subsection{VGA Part 1: Objectives}
 
 \begin{enumerate}
-  \item Demonstrate to the TA or Professor the RGB Display Terminal
-  \item What is the resolution of the VGA Display in the RGB Display Terminal?
-  \item What is the purpose of the \textbf{hcount} and \textbf{vcount} in the VGA Controller?
+  \item Demonstrate to the TA or Professor the RGB display terminal
+  \item What is the resolution of the VGA display in the RGB display terminal?
+  \item What is the purpose of the \textbf{hcount} and \textbf{vcount} in the VGA controller?
 \end{enumerate}
 
 \newpage
 
 \section{3. VGA Display concepts part 2:}
-In this section, you will be building from the previous section on how a VGA Display works. You will be using this concept and the example code provided to create a VGA Display with a ASCII Terminal. During this section you will be learning how to generate memory through Xilinx\textsuperscript{\textregistered} logicore utility. This will allow you to use the memory provided on the FPGA as a buffer for you terminal.
+In this section, you will be building from the previous section on how a VGA display works. You will be using this concept and the example code provided to create a VGA Display with a ASCII Terminal. During this section you will be learning how to generate memory through Xilinx\textsuperscript{\textregistered} logicore utility. This will allow you to use the memory provided on the FPGA as a buffer for you terminal.
 
 \subsection{VGA Setup}
 Create a new project or empty the files in the current file. Include all the files in the VGA Part 2 folder and the Keyboard folder. When you open up the design view, you will notice a file missing(U7). U7 is the memory for the VGA. This file you will be needing to generate through logicore in the next subsection.
 
 \subsection{Generate Memory}
-To Generate the memory for the VGA Display, you first need to open up logicore. This can be done under \textbf{Tools} -\textgreater \textbf{Core Generator} or Alt+t,c. When the Core Generator opens up, you will now need to create a new project.
+To generate the memory for the VGA display, you first need to open up logicore. This can be done under \textbf{Tools} -\textgreater \textbf{Core Generator} or Alt+t,c. When the Core Generator opens up, you will now need to create a new project.
 
 \begin{enumerate}
   \item Enter the parameters for the new project: \hfill \\
@@ -435,75 +430,14 @@ After you generate the Logicore file for the memory. The next step you need to d
 \subsection{VGA Part 2: Objectives}
 
 \begin{enumerate}
-  \item Demonstrate to the TA or Professor the ASCII Display Terminal
+  \item Demonstrate to the TA or Professor the ASCII display terminal
   \item Why is a 8 to 1 MUX needed?
   \item What is the reason for a blinker?
 \end{enumerate}
 
 \newpage
 
-\section{4. Debug Unit:}
-With the Previous Sections of the lab, you learned how a finite state machine can be used to grab data. How you can store that data in memory and call it back at a later time. For this section you will be given a design on a potential debug unit. You will be using this design and implementing it in VHDL.
-
-\section{Debug Unit Concepts and Design}
-For the Debug Unit, you will be having it monitor the ASCII line. It will check if the ASCII line have been updated with the \textbf{ASCII\_RD} signal from the Keyboard Controller. Each time the \textbf{ASCII\_RD} Line goes high, you will move the ASCII value on the bus to a buffer and increment the position of the buffer. When you hit enter, the debug unit will then flush its contents out for display.
-
-The Debug Unit buffer will output to three devices which will watch the buffer. For Example when you type \textbf{SUB}, the opcode will look through a certain blocks on the buffer and output a binary 1. This can be done with a lookup table. The same principle can be adapted for the registers with the need to sanities the input and only have numbers output and this can be done with another lookup table. You are free to choose what method you want to create the Debug Unit. For this section, you will need to create a test bench and test you debug unit. After testing you will move to the next section of the lab.
-
-\begin{figure}[!htbp]
-  \centering
-    \fbox{\includegraphics[width=0.5\textwidth]{images/DebugUnitLayout.png}}
-  \caption{Basic Layout for the Debug Unit}
-\end{figure}
-
-\subsection{Debug Unit: Objectives}
-\begin{enumerate}
-  \item Develop a block diagram of your Debug Unit and include it in the report.
-  \item Implement the design in VHDL.
-  \item Create a Test Bench to test your design
-  \item Capture you simulation output to verify it is working.
-\end{enumerate}
-
-\newpage
-
-\section{5. Assembling a Keyboard Debug Unit:}
-After Learning about the concepts of a debug unit, you will now need to add a keyboard with the debug unit. You will need to have the keyboard controller ASCII line linked up with the debug unit with the output data to the I/O's on the board. If you want a challenge, implement the debug unit with an output to the VGA display, this can be used later on for Extra Credit Part 2(optional).
-
-\subsection{Keyboard Debug Unit: Objectives}
-\begin{enumerate}
-  \item Develop a block diagram of you design include it in your report.
-  \item Implement the design in VHDL.
-  \item Demonstrate the Keyboard with Debug Unit to the TA or professor.
-\end{enumerate}
-
-%\newpage %Save the Treesssss one page at a time
-
-\section{6. Extra 1: Keyboard ALU part 1:}
-With the experience you learned throughout each section of the Lab. You will now be combining your knowledge for some extra credit. %or 12 years dungeon, all of you dungeon, 7 years no trial.
-You will be having the debug unit control the ALU and have it output data on the 7-segment display. You will need to have the input from a keyboard. This will be very useful during the project since you will be able to enter commands from the keyboard to your device. In order to gain extra credit, you must complete each objective. %not kidding, you need to complete everything....
-
-\subsection{Extra Credit 1: Objectives}
-\begin{enumerate}
-  \item Develop a block diagram of you design include it in your report.
-  \item Implement the design in VHDL.
-  \item Demonstrate the Keyboard to ALU to the TA or professor.
-\end{enumerate}
-
-\section{7. Extra 2: Keyboard ALU part 2:}
-%Time for the REAL Extra credit :)
-For the next extra credit you will have the ALU output directly to the VGA terminal. You need to build upon from the previous extra credit and change the output. To get started, you will be needing to manipulate the ASCII bus to have the ALU send to the VGA Terminal.
-
-\subsection{Extra Credit 2: Objectives}
-\begin{enumerate}
-  \item Develop a block diagram of you design include it in your report.
-  \item Implement the design in VHDL.
-  \item Demonstrate the Keyboard to ALU to the TA or professor.
-\end{enumerate}
-
-
-\newpage
-
-\section{Lab 2 Grade}
+\section{Lab 3 Grade}
 
 \begin{table}[!htb]
   \begin{center}
@@ -526,28 +460,10 @@ For the next extra credit you will have the ALU output directly to the VGA termi
        3.1. VGA Demo 2 & Demonstrate VGA Terminal Display & 5 &\\
        3.2. Questions & Answer Questions about the VGA Terminal Display & 5 &\\
        \hline
-       \multicolumn{2}{|l}{\textbf{Section 4}}  & -\textbf{10}- &\\
-       \hline
-       4.1. Debug Unit Demo &  Demonstrate Debug Unit & 5 &\\
-       4.2. Questions & Answer Questions about the Debug Unit & 5 &\\
-       \hline
-       \multicolumn{2}{|l}{\textbf{Section 5}}  & -\textbf{10}- &\\
-       \hline
-       5.1. VGA Debug Unit & Demonstrate VGA with Debug Unit & 5 &\\
-       5.2. Questions & Answer Questions about the VGA Debug Unit & 5 &\\
-       \hline
-       \multicolumn{2}{|l}{\textbf{Section 6: Extra Credit 1}}  & -\textbf{20}- &\\
-       \hline
-       6.1. ALU Debug Unit & Demonstrate Debug Unit with ALU & 20 &\\
-       \hline
-       \multicolumn{2}{|l}{\textbf{Section 7: Extra Credit 2}}  & -\textbf{20}- &\\
-       \hline
-       7.1. ALU Terminal & Demonstrate ALU with VGA Terminal & 20 &\\
-       \hline
-       \multicolumn{2}{|l}{\textbf{Lab Report}}  & -\textbf{20}- &\\
+       \multicolumn{2}{|l}{\textbf{Lab Report}}  & -\textbf{50}- &\\
        \hline
        \hline
-       \multicolumn{2}{|l}{Total} & \multicolumn{1}{c|}{100|140} &\\
+       \multicolumn{2}{|l}{Total} & \multicolumn{1}{c|}{100} &\\
        \hline
     \end{tabular}
   \end{center}
