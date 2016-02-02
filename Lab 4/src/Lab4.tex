@@ -1,0 +1,99 @@
+% Lab 4 LaTeX Document
+% Version 1.0
+\documentclass{article}
+\usepackage{listings}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor,colortbl}
+\usepackage{longtable}
+\usepackage{caption}
+\usepackage[pdftex,
+            pdfauthor={Daniel Noyes},
+            pdftitle={Laboratory \#4 - Spring 2016 },
+            pdfsubject={ECE 368 Digital Design},
+            pdfkeywords={Digital Design, VHDL, Nexys 2, Xilinx, ISE},
+            pdfproducer={Latex},
+            pdfcreator={pdflatex}]{hyperref}
+
+
+\captionsetup[table]{justification=centering}
+
+%Remove the number display for each section tag
+\makeatletter
+\renewcommand\@seccntformat[1]{}
+\makeatother
+
+%Define gray center for a table
+\definecolor{Gray}{gray}{0.85}
+\newcolumntype{g}{>{\columncolor{Gray}}c}
+%Quick command for multiple lines in a table cell
+\newcommand{\specialcell}[2][c]{%
+  \begin{tabular}[#1]{@{}c@{}}#2\end{tabular}}
+
+
+\begin{document}
+
+\begin{center}
+\textsc{\huge ECE 368 Digital Design - Spring 2016}\\[1cm]
+\textsc{{\LARGE Laboratory \#4: (100pts)}}\\[0.5cm]
+\textsc{\Large Lab date: February $19$\textsuperscript{th},2016}\\[0.5cm]
+\textsc{\Large Lab Report Due: Friday February $26$\textsuperscript{th},2016}\\[1cm]
+\end{center}
+
+\section{Overview and Objectives:}
+NA
+
+\section{Objectives for this lab:}
+\begin{itemize}
+  \item NA
+\end{itemize}
+
+\section{Lab sections:}
+\begin{enumerate}
+  \item NA
+\end{enumerate}
+
+\newpage
+\section{1. NA:}
+NA
+
+\subsection{NA}
+
+\begin{figure}[!htbp]
+  \centering
+    \fbox{\includegraphics[width=0.8\textwidth]{images/NA.png}}
+  \caption{NA}
+\end{figure}
+
+\section{Lab 4 Grade}
+
+\begin{table}[!htb]
+  \begin{center}
+    \begin{tabular}[width=0.8\textwidth]{|l|l|c|l|}
+       \hline
+       Section & Description & Value & Score\\
+       \hline 
+       \multicolumn{2}{|l}{\textbf{Section 1}}  & -\textbf{30}- &\\
+       \hline
+       1.1. NA & 30 &\\
+       \hline
+       \multicolumn{2}{|l}{\textbf{Section 2}}  & -\textbf{20}- &\\
+       \hline
+       2.1. NA & 20 &\\
+       \hline
+       \multicolumn{2}{|l}{\textbf{Section 3}}  & -\textbf{10}- &\\
+       \hline
+       3.1. NA & 10 &\\
+       \hline
+       \multicolumn{2}{|l}{\textbf{Lab Report}}  & -\textbf{50}- &\\
+       \hline
+       \hline
+       \multicolumn{2}{|l}{Total} & \multicolumn{1}{c|}{100} &\\
+       \hline
+    \end{tabular}
+  \end{center}
+  \caption{Lab Grade Breakdown Table}
+\end{table}
+
+\end{document}
