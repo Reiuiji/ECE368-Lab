@@ -1,17 +1,14 @@
-# Latex Makefile for Lab2.tex
-.PHONY: Lab2 all clean
+# Latex Makefile for Lab1.tex
+.PHONY: Lab1.pdf all clean
 
-all: Lab2
+all: Lab1.pdf
 
-Lab2: Lab2.tex
-	latexmk -pdf -pdflatex="pdflatex -interactive=nonstopmode" -use-make Lab2.tex
-	latexmk -c
-	latexmk -pdf -pdflatex="pdflatex -interactive=nonstopmode" -use-make KeyboardATP.tex
+Lab1.pdf: Lab1.tex
+	latexmk -pdf -pdflatex="pdflatex -interactive=nonstopmode" -use-make Lab1.tex
 	latexmk -c
 
 clean:
 	latexmk -CA
 
-update: Lab2
-	mv Lab2.pdf ../Lab2.pdf
-	mv KeyboardATP.pdf ../Keyboard/KeyboardATP.pdf
+update: Lab1.pdf
+	mv Lab1.pdf ../Lab1.pdf
