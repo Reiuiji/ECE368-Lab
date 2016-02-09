@@ -26,7 +26,11 @@ The course will use Xilinx's [14.7 ISE WebPack Edition](http://www.xilinx.com/su
 |[4](Lab 4/Lab4.pdf) | Debug  | 26/02/16| 04/03/16 |
 
 ### Project Schedule
-TBA
+| Part# | Topic | Course Date | Due Date |
+|:----:|:-----:|:-----------:|:--------:|
+|[1](Project Lab 1/ProjectLab1.pdf) | Control Path, Data Path  | 04/03/16| 25/03/16 |
+|[2](Project Lab 2/ProjectLab2.pdf) | Branch, Jump Link, Return, Interrupt  | 25/03/16| 08/04/16 |
+|[3](Project Lab 3/ProjectLab3.pdf) | Finalization of RISC | 08/04/16| 22/04/16 |
 
 ### Contributors
  * Daniel Noyes
