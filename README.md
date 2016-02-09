@@ -1,13 +1,13 @@
 ECE368-Spring2015
 ================
-This contains example code and material for University of Massachusetts Dartmouth Advanced Digital Design Course
+Welcome to the ECE368 Lab Repository.
 
-[Material is still under development and are subject to change!]
+This repository contains setup instructions, VHDL examples, Lab assignments and the Final Project for ECE368. ECE368 is an Advanced Digital Design Course focusing on VHDL with a FPGA.
 
 ### Lab Requirements:
 * Nexyx 2 Development Board
 * ISE WebPack 14.7
-* Group with a classmate(2 per group)
+* Group with a classmate(2-3 per group)
 
 ### Hardware
 
@@ -31,6 +31,10 @@ The course will use Xilinx's [14.7 ISE WebPack Edition](http://www.xilinx.com/su
 |[1](Project Lab 1/ProjectLab1.pdf) | Control Path, Data Path  | 04/03/16| 25/03/16 |
 |[2](Project Lab 2/ProjectLab2.pdf) | Branch, Jump Link, Return, Interrupt  | 25/03/16| 08/04/16 |
 |[3](Project Lab 3/ProjectLab3.pdf) | Finalization of RISC | 08/04/16| 22/04/16 |
+
+### Download and use
+
+This Git Repo uses [git-lfs](https://git-lfs.github.com/) to maintain large binary files. To download the entire repo first install git-lfs and run `git lfs pull` after you git clone the repo.
 
 ### Contributors
  * Daniel Noyes
