@@ -34,7 +34,7 @@ The course will use Xilinx's [14.7 ISE WebPack Edition](http://www.xilinx.com/su
 
 ### Download and use
 
-This Git Repo uses [git-lfs](https://git-lfs.github.com/) to maintain large binary files. To download the entire repo first install git-lfs and run `git lfs pull` after you git clone the repo.
+This Git Repo uses [git-lfs](https://git-lfs.github.com/) to maintain large binary files. To download the entire repo first install git-lfs and run `git clone [repo]`. It is recomend to run `git lfs pull` after you git clone to Fetch LFS changes in the repo and show the contents properly.
 
 ### Contributors
  * Daniel Noyes
