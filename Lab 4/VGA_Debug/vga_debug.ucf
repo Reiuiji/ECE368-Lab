@@ -1,0 +1,48 @@
+###################################################
+## School: University of Massachusetts Dartmouth
+## Department: Computer and Electrical Engineering
+## Engineer: Daniel Noyes
+## 
+## Create Date:    SPRING 2016
+## Module Name:    VGA Color User Constraint File
+## Project Name:   VGA Color
+## Target Devices: Spartan-3E
+## Tool versions:  Xilinx ISE 14.7
+## Description:
+##    Nexys 2 Pin Assignments
+##    
+###################################################
+
+#50MHz period constant
+NET "CLK" PERIOD = 20.0ns HIGH 50%;
+#Clock Assignment
+NET "CLK" LOC = B8 | IOSTANDARD = LVTTL;
+
+##Switch Assignment
+NET "SW<0>" LOC = G18;
+NET "SW<1>" LOC = H18;
+NET "SW<2>" LOC = K18;
+NET "SW<3>" LOC = K17;
+NET "SW<4>" LOC = L14;
+NET "SW<5>" LOC = L13;
+NET "SW<6>" LOC = N17;
+NET "SW<7>" LOC = R17;
+
+#Button Assignment
+NET "BTN<0>" LOC = B18;
+NET "BTN<1>" LOC = D18;
+NET "BTN<2>" LOC = E18;
+NET "BTN<3>" LOC = H13;
+
+##VGA Assignment
+#8-bit color(256 options), only need 3-bit just use the 510ohm connects
+Net "VGARED<0>" LOC = R9; #2Kohm  to RED
+Net "VGARED<1>" LOC = T8; #1Kohm  to RED
+Net "VGARED<2>" LOC = R8; #510ohm to RED
+Net "VGAGRN<0>" LOC = N8; #2Kohm  to GREEN
+Net "VGAGRN<1>" LOC = P8; #1Kohm  to GREEN
+Net "VGAGRN<2>" LOC = P6; #510ohm to GREEN
+Net "VGABLU<0>" LOC = U5; #1Kohm  to BLUE
+Net "VGABLU<1>" LOC = U4; #510ohm to BLUE
+Net "HSYNC" LOC = T4;
+Net "VSYNC" LOC = U3;
