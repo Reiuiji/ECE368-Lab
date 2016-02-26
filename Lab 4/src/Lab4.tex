@@ -42,30 +42,146 @@
 \end{center}
 
 \section{Overview and Objectives:}
-NA
+In this laboratory assignment, you will be building upon from all your previous lab's and dive into the ocean of VHDL. You will be able to understand the basic concepts of developing a debug unit which will help you later on in developing your RISC machine. You will learn how to create multiple state machine processes that will help handle the debug unit. The debug unit will help provide a method to test your code on the board. Two different methods of debug will be explained and developed through the lab. The first section will focus on a visual debug unit that will display data onto the VGA. The second section will focus on debug from a external machine through \href{http://www.xilinx.com/products/design-tools/chipscopepro.html}{Xilinx\textsuperscript{\textregistered} Chipscope\texttrademark Pro}.
 
 \section{Objectives for this lab:}
 \begin{itemize}
-  \item NA
+  \item Build a stronger foundation in understanding VHDL
+  \item Learn the process of visually debugging through the Nexys 2 VGA port
+  \item Understand concepts of state machines
+  \item Understand control signals
+  \item Better familiarity with Core Gen
+  \item Understand basic methods of using Chip Scope
+  \item Breaking out from the lab and start developing your very own VHDL Code
 \end{itemize}
 
 \section{Lab sections:}
 \begin{enumerate}
-  \item NA
+  \item Introduction to debugging concepts.
+  \item Building a Debug
 \end{enumerate}
 
 \newpage
-\section{1. NA:}
-NA
+\section{1. Introduction to debugging concepts:}
+In the previous labs, you learned the concepts of a finite state machine. These concepts can be further developed to create a method/routine which will be able to grab and process data. How you can store that data in memory and call it back at a later time. For this section you will be given a design of a debug unit. You will be using this design and further improve your understanding of VHDL with debugging.
 
-\subsection{NA}
+\subsection{Debug Concepts and Design}
+For the Debug process, you will be having it monitor the ALU component from a previous lab. The debug unit will wrap around the component and will be driving the inputs to the ALU. The output data from the ALU will be saved to access after the run is complete. To fully analyze the device, capturing as much data can be extremely helpful when figuring out what is the exact events which caused the output. The basic block level diagram can be viewed in Figure \ref{fig:DebugBlock}.
 
 \begin{figure}[!htbp]
   \centering
-    \fbox{\includegraphics[width=0.8\textwidth]{images/NA.png}}
-  \caption{NA}
+    \fbox{\includegraphics[width=0.5\textwidth]{images/Debug_Driver_Diagram.png}}
+  \caption{Debug Unit Diagram}
+  \label{fig:DebugBlock}
 \end{figure}
 
+\section{2. Building a Debug}
+For the first part of the lab you will be using the provided example code in \textbf{VGA\_Debug} to play around and test a "kinda" working example debug unit. First create a new project just like the previous labs. Add only the source code in the \textbf{VGA\_Debug} folder. You will be seeing a few question marks indicating that the project is missing a few files as shown in figure \ref{fig:projectview}. Include the files required from previous labs. The VGA\_Buffer\_Ram will have to be generated through core generator. Refer to the previous lab on the instructions to build the RAM.
+
+The Last section to include is the "DEBUG\_RAM" entity. This component will hold all the data obtained from the unit under test(ALU). The build process will be similar with the VGA\_Buffer\_Ram with slightly different configurations.
+
+\begin{figure}[!htbp]
+  \centering
+    \fbox{\includegraphics[width=0.5\textwidth]{images/VGA_DEBUG_INTRO.png}}
+  \caption{VGA Debug Ram Component name}
+  \label{fig:projectview}
+\end{figure}
+
+To generate the Ram open Core Generator and run the \textbf{Block Memory Generator}. This can be done by going in the IP Catalog and selecting \textbf{Memories \& Storage Elements} -\textgreater \textbf{RAMSs \& ROMs} -\textgreater \textbf{Block Memory Generator}. For the Memory you will need to name it \textbf{DEBUG\_RAM}. The memory will be a simple Dual Port Ram with \textbf{32} bit width while having \textbf{16} depth. Set the Port B options to have the Read Width \textbf{4}. On page 4 you will need to initialize the memory. This can be done by loading spaces(\textbf{X"20"}) under the "Memory Initialization section". Follow the next four figures to double check the configurations. After you finished with the configuration, the core generator will generate the xco files you need for the project. Don't forget to check your design properties for the preferred language \textbf{VHDL}. 
+
+
+\begin{figure}[!htbp]
+  \centering
+    \fbox{\includegraphics[width=0.5\textwidth]{images/DEBUG_RAM_1.png}}
+  \caption{VGA Debug Ram Memory Type}
+\end{figure}
+
+\begin{figure}[!htbp]
+  \centering
+    \fbox{\includegraphics[width=0.5\textwidth]{images/DEBUG_RAM_2.png}}
+  \caption{VGA Debug Ram Memory Configuration}
+\end{figure}
+
+\begin{figure}[!htbp]
+  \centering
+    \fbox{\includegraphics[width=0.5\textwidth]{images/DEBUG_RAM_3.png}}
+  \caption{VGA Debug Ram Memory Initalization}
+\end{figure}
+
+\begin{figure}[!htbp]
+  \centering
+    \fbox{\includegraphics[width=0.5\textwidth]{images/DEBUG_RAM_4.png}}
+  \caption{VGA\_Debug Project view}
+\end{figure}
+
+\newpage
+
+\subsection{Testing the Debug}
+With all the setup, now you will have a working debug example. Double check if all the components are filled in. Now it is time to generate the programming file and test it on the board. When you push the programming file on the board you will see the default ASCII list from the VGA(If you included a COE file). Now it is time to test the board. Each button has a unique operation to the system. The routines that are triggered from the buttons are the run routine which will run the test simulation on the hardware. A dump data routine that will grab the resulting data from run and will push it onto the VGA display. A clear utility that will clear the VGA display. The last is a reset which will default the system just in case one routine gets lost in never never land.
+
+\subsection{VGA Debug: Objectives}
+\begin{enumerate}
+  \item What are the flags that are triggered by which button on the Nexys 2 board?
+  \item Look through the example and expand the test by adding more test data.\\
+  HINT: you need to edit "DEBUG\_CNT" and test values. Explore vga\_debug.vhd and experiment.
+  \item Build a block diagram of the VGA\_Debug to gain a better understanding of the design.\\
+  Use \ref{fig:DebugBlock} as a start.
+  \item The current format of the dumped data looks a little too messy. Try and clean up the data.\\
+  HINT: There is a unused state in the \textbf{DATADUMP} Process.
+  \item Demo the VGA Debug output the debug data to the display.
+  \item BONUS: Data outputs cleanly
+  \item BONUS: Instead of pushing buttons to trigger each event. Create a process that will do it for you. \\
+  Hint: DEBUG\_STATE is the key
+\end{enumerate}
+
+\newpage
+
+\section{2. Integrating a Debug with ChipScope\texttrademark Pro}
+With the previous section building a framework on the applying the concepts of debug. For this section you will be debugging the debug unit to test and verify if it is fully working. Chipscope Pro is a debugging framework which will enable the process of creating triggers on the signal in the project. Due to licensing constraints with the WebPack, ChipScope is not enabled. This can be fix by applying a license key for a greater version of the software. Xilinx offers a evaluation license(\href{http://www.xilinx.com/products/design-tools/ise-eval.html}{ise-eval}) that will enable ChipScope Pro for 30 days.
+
+In order to incorporate ChipScope first right click on \textbf{VGA\_Driver} Top Module. Click new source, on the list second down their will be a source type called "ChipScope Definition and Connection File". Name the file any name you want, by example "chipscope\_test.cdc". After the ChipScope finishing adding the component to the project. A new component will be seen with a key icon. Right click on \textbf{Synthesize XST} and select Process Properties. Change the "Keep Hierarchy" to soft mode, this will prevent XST from optimizing the hierarchical and keep the current Hierarchy setup. Next step will be to double click the "chipscope\_test.cdc" to open the inserter utility. Go through and find what signals you need and test the design. Add each siganl and test teh trigger. The slides below will show basic setup and configuration for the Debug unit. The last step to setup the ChipScope would be to set the "FPGA Start-Up clock" and change the value to JTAG.
+
+If need more reference material for Xilinx ChipScope Pro, Read through the \href{http://www.xilinx.com/support/documentation/sw_manuals/xilinx14_7/ug750.pdf}{tutorial}
+
+\begin{figure}[!htbp]
+  \centering
+    \fbox{\includegraphics[width=0.8\textwidth]{images/CHIPSCOPE_1.png}}
+  \caption{ChipScope Setup: New Source Wizard}
+  
+\end{figure}
+\begin{figure}[!htbp]
+  \centering
+    \fbox{\includegraphics[width=0.8\textwidth]{images/CHIPSCOPE_2.png}}
+  \caption{ChipScope Setup: ChipScope is present}
+\end{figure}
+
+\begin{figure}[!htbp]
+  \centering
+    \fbox{\includegraphics[width=0.8\textwidth]{images/CHIPSCOPE_3.png}}
+  \caption{ChipScope Setup: ChipScop Pro Core Inserter}
+\end{figure}
+
+\begin{figure}[!htbp]
+  \centering
+    \fbox{\includegraphics[width=0.8\textwidth]{images/CHIPSCOPE_4.png}}
+  \caption{ChipScope Setup:Edit startup file}
+\end{figure}
+
+\begin{figure}[!htbp]
+  \centering
+    \fbox{\includegraphics[width=0.8\textwidth]{images/CHIPSCOPE_5.png}}
+  \caption{ChipScope Setup: Process Propoerties}
+\end{figure}
+
+
+\subsection{ChipScope Debug: Objectives}
+
+\begin{enumerate}
+  \item Demonstrate to the TA or Professor the ChipScope routine
+\end{enumerate}
+
+
+\newpage
 \section{Lab 4 Grade}
 
 \begin{table}[!htb]
@@ -74,17 +190,15 @@ NA
        \hline
        Section & Description & Value & Score\\
        \hline 
-       \multicolumn{2}{|l}{\textbf{Section 1}}  & -\textbf{30}- &\\
+       \multicolumn{2}{|l}{\textbf{Section 1}}  & -\textbf{40}- &\\
        \hline
-       1.1. NA & 30 &\\
+       1.1. VGA Debug Demo & 10 &\\
+       1.1. VGA Debug Questions & 30 &\\
+       1.1. VGA Debug Bonus Questions & 10 &\\
        \hline
-       \multicolumn{2}{|l}{\textbf{Section 2}}  & -\textbf{20}- &\\
+       \multicolumn{2}{|l}{\textbf{Section 2}}  & -\textbf{10}- &\\
        \hline
-       2.1. NA & 20 &\\
-       \hline
-       \multicolumn{2}{|l}{\textbf{Section 3}}  & -\textbf{10}- &\\
-       \hline
-       3.1. NA & 10 &\\
+       2.1. Demo ChipScope & 10 &\\
        \hline
        \multicolumn{2}{|l}{\textbf{Lab Report}}  & -\textbf{50}- &\\
        \hline
