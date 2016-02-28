@@ -23,12 +23,12 @@ The course will use Xilinx's [14.7 ISE WebPack Edition](http://www.xilinx.com/su
 |[1](Lab 1/Lab1.pdf) | Intro  | 29/01/16| 12/02/16 |
 |[2](Lab 2/Lab2.pdf) | Input  | 12/02/16| 19/02/16 |
 |[3](Lab 3/Lab3.pdf) | Output | 19/02/16| 26/02/16 |
-|[4](Lab 4/Lab4.pdf) | Debug  | 26/02/16| 04/03/16 |
+|[4](Lab 4/Lab4.pdf) | Debug  | 26/02/16| 11/03/16 |
 
 ### Project Schedule
 | Part# | Topic | Course Date | Due Date |
 |:----:|:-----:|:-----------:|:--------:|
-|[1](Project Lab 1/ProjectLab1.pdf) | Control Path, Data Path  | 04/03/16| 25/03/16 |
+|[1](Project Lab 1/ProjectLab1.pdf) | Control Path, Data Path  | 11/03/16| 25/03/16 |
 |[2](Project Lab 2/ProjectLab2.pdf) | Branch, Jump Link, Return, Interrupt  | 25/03/16| 08/04/16 |
 |[3](Project Lab 3/ProjectLab3.pdf) | Finalization of RISC | 08/04/16| 22/04/16 |
 
