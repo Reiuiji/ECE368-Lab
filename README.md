@@ -1,4 +1,4 @@
-ECE368-Spring2015
+ECE368 Advanced Digital Design Lab
 ================
 Welcome to the ECE368 Lab Repository.
 
