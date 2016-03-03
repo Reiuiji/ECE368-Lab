@@ -40,9 +40,9 @@ elif [[ ! -z $YUM_CHECK ]]; then
 elif [[ ! -z $APT_CHECK ]]; then
     apt-get install libusb-dev fxload -y
 elif [[ ! -z $PAC_CHECK ]]; then
-    pacman -S libusb
+    pacman --needed -S libusb wget tar
     # fxload is not in the arch repo, get from the AUR
-    aurInstall
+    aurinstall_fxload
 elif [[ ! -z $EMERGE_CHECK ]]; then
     emerge -v libusb fxload
 else
@@ -162,15 +162,16 @@ usage() {
 
 }
 
-aurInstall() { 
+aurinstall_fxload() { 
+  TMPDIR='/tmp/ywbuild'
   # Create directory nobody else would make
   echo "Creating temporary build directory..."
-  mkdir /home/ywbuild
-  chgrp nobody /home/ywbuild
-  chmod g+ws /home/ywbuild
-  setfacl -m u::rwx,g::rwx /home/ywbuild
-  setfacl -d --set u::rwx,g::rwx,0::- /home/ywbuild
-  cd /home/ywbuild
+  mkdir -p $TMPDIR
+  chgrp nobody $TMPDIR
+  chmod g+ws $TMPDIR
+  setfacl -m u::rwx,g::rwx $TMPDIR
+  setfacl -d --set u::rwx,g::rwx,0::- $TMPDIR
+  cd $TMPDIR
 
   # Get and install fxload from AUR
   echo "Installing fxload..."
@@ -181,8 +182,8 @@ aurInstall() {
   pacman -U fxload*.tar.xz
   cd /root
 
- # Cleaning house
-  rm -r /home/ywbuild
+  # Cleaning house
+  rm -r $TMPDIR
   echo "Cleaning... fxload should be installed"
 
   # Making digilentusb hotplug script happy
