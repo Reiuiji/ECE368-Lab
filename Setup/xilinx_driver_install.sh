@@ -27,17 +27,22 @@ installdep() {
 echo "Installing dependecies"
 
 #Check package manager
+DNF_CHECK=$(which dnf 2> /dev/null) #Fedora 23 and above
 YUM_CHECK=$(which yum 2> /dev/null) #Redhat/Fedora/CentOS
 APT_CHECK=$(which apt-get 2> /dev/null) #Debian/Ubuntu/Mint
 PAC_CHECK=$(which pacman 2> /dev/null) #Arch
 EMERGE_CHECK=$(which emerge 2> /dev/null) #Gentoo <3
 
-if [[ ! -z $YUM_CHECK ]]; then
+if [[ ! -z $DNF_CHECK ]]; then
+    dnf install libusb-devel fxload -y
+elif [[ ! -z $YUM_CHECK ]]; then
     yum install libusb-devel fxload -y
 elif [[ ! -z $APT_CHECK ]]; then
     apt-get install libusb-dev fxload -y
 elif [[ ! -z $PAC_CHECK ]]; then
-    pacman -S libusb fxload
+    pacman -S libusb
+    # fxload is not in the arch repo, get from the AUR
+    aurInstall
 elif [[ ! -z $EMERGE_CHECK ]]; then
     emerge -v libusb fxload
 else
@@ -155,6 +160,33 @@ usage() {
 	echo "        $0 remove"
 	exit 1
 
+}
+
+aurInstall() { 
+  # Create directory nobody else would make
+  echo "Creating temporary build directory..."
+  mkdir /home/ywbuild
+  chgrp nobody /home/ywbuild
+  chmod g+ws /home/ywbuild
+  setfacl -m u::rwx,g::rwx /home/ywbuild
+  setfacl -d --set u::rwx,g::rwx,0::- /home/ywbuild
+  cd /home/ywbuild
+
+  # Get and install fxload from AUR
+  echo "Installing fxload..."
+  sudo -u nobody wget https://aur.archlinux.org/cgit/aur.git/snapshot/fxload.tar.gz
+  sudo -u nobody tar -xvf fxload.tar.gz
+  cd fxload
+  sudo -u nobody makepkg
+  pacman -U fxload*.tar.xz
+  cd /root
+
+ # Cleaning house
+  rm -r /home/ywbuild
+  echo "Cleaning... fxload should be installed"
+
+  # Making digilentusb hotplug script happy
+  mkdir -p /etc/hotplug/usb
 }
 
 case $1 in
