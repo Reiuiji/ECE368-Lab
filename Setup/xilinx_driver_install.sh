@@ -33,18 +33,25 @@ APT_CHECK=$(which apt-get 2> /dev/null) #Debian/Ubuntu/Mint
 PAC_CHECK=$(which pacman 2> /dev/null) #Arch
 EMERGE_CHECK=$(which emerge 2> /dev/null) #Gentoo <3
 
-if [[ ! -z $DNF_CHECK ]]; then
+#Prioritized for the following
+#
+#Emerge > Pacman > Dandified YUM(DNF) > Yellow Dog Update Manager(YUM) > Aplitude
+#
+#Order is key for systems(arch,gentoo) since they can have other package
+# managers on top that can be picked over the systems package manager.
+
+if [[ ! -z $EMERGE_CHECK ]]; then
+    emerge -v libusb fxload
+elif [[ ! -z $PAC_CHECK ]]; then
+    pacman --needed -S libusb wget tar
+    # fxload is not in the arch repo, get from the AUR
+    aurinstall_fxload
+elif [[ ! -z $DNF_CHECK ]]; then
     dnf install libusb-devel fxload -y
 elif [[ ! -z $YUM_CHECK ]]; then
     yum install libusb-devel fxload -y
 elif [[ ! -z $APT_CHECK ]]; then
     apt-get install libusb-dev fxload -y
-elif [[ ! -z $PAC_CHECK ]]; then
-    pacman --needed -S libusb wget tar
-    # fxload is not in the arch repo, get from the AUR
-    aurinstall_fxload
-elif [[ ! -z $EMERGE_CHECK ]]; then
-    emerge -v libusb fxload
 else
     echo "[ERROR]: Unknown package manager"
     exit 1;
