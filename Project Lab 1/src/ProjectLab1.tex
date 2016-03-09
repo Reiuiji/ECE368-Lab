@@ -45,10 +45,10 @@
 \end{center}
 
 \section{Overview and Objectives:}
-In this project assignment, you will be using the Xilinx ISE software tools with the Digilent Nexys 2 devboard to build the first part of your machine. You will be applying the experience you gained in the introduction labs in order to test your newly created hardware.
+In this project assignment, you will be using the Xilinx ISE software tools with the Digilent Nexys 2 devboard to build the first part of your machine. You will be applying the experience you gained in the introductory labs in order to create and test your hardware.
 
 \section{Introduction to the UMD RISC}
-In Figure~\ref{fig:pipetoplevel} below, it shows the top-level design connection a Control entity to an FPU entity. The FPU entity will expand upon the design experience you gained in Lab 2. The FPU will automatically run a program from the Control entity which is stored in the Instruction Memory entity. The Instruction Memory for now should hold up to 20 instructions through a five-stage pipeline and output the results from the NEXYS2 dev board to the VGA console. The Data Memory portion of the design and instruction set will only be used for the load word and store word instructions for this lab.
+In Figure~\ref{fig:pipetoplevel} below, it shows the top-level diagram of the Control entity and the FPU entity together in a Pipeline functional processing unit (FPU). The FPU entity will expand upon the design experience you gained in the Labs. The FPU will automatically run a program from the Control entity which is stored in the Instruction Memory entity. The Instruction Memory for now should hold up to 20 instructions through a five-stage pipeline. This is just a recommendation, this is a open design project which means you can interface as many instructions as space is allowed and the pipeline system can be smaller if you optimize the architecture. The results from the FPU and the system should be outputted to verify that the system is working. This can be done through a debug unit that can either output to the VGA console or serial to a computer to log the results. The Data Memory portion of the design and instruction set will only be used for the load word and store word instructions for this lab.
 
 \begin{figure}[!htbp]
   \centering
@@ -58,7 +58,7 @@ In Figure~\ref{fig:pipetoplevel} below, it shows the top-level design connection
 \end{figure}
 \FloatBarrier
 
-You will implement a full 5 cycle pipeline that takes in one instruction per clock cycle and performs partial operations on five instructions in parallel when the pipe is full. A full pipeline implies that there are 5 different instructions being performed, with each one in a different stage of the pipeline (i.e. one in fetch, decode, operand access, execution and write back). For the data path portion of this design you must implement the major elements of the Harvard Architecture. This includes the Instruction Memory, the Data memory, the functional processing unit (consisting of an arithmetic, logic, shift and load store unit), the sixteen 16 bit register bank and any other needed components. For example a program counter, instruction register, temporary registers and connecting devices (e.g. multiplexers, etc.). 
+For the first project you will implement a full 5 cycle pipeline that takes in one instruction per clock cycle and performs partial operations on five instructions in parallel when the pipe is full. A full pipeline implies that there are 5 different instructions being performed, with each one in a different stage of the pipeline (i.e. one in fetch, decode, operand access, execution and write back). For the data path portion of this design you must implement the major elements of the Harvard Architecture. This includes the Instruction Memory, the Data memory, the functional processing unit (consisting of an arithmetic, logic, shift and load store unit), the sixteen 16 bit register bank and any other needed components. For example a program counter, instruction register, temporary registers and connecting devices (e.g. multiplexers, etc.). 
 
 Table~\ref{tab:riscise} shows the instruction set architecture (ISA) you are to implement this in your machine. This portion of the instruction set includes the register type, immediate type, and data type instructions. You will need a variety of hardware components to implement these instructions.
 
@@ -89,11 +89,11 @@ Table~\ref{tab:riscise} shows the instruction set architecture (ISA) you are to 
 \end{table}
 \FloatBarrier
 
-A high level (not complete) notional design is depicted in Figure~\ref{fig:data_control_paths}. The clock, reset and other possibly needed control signals are implied in this design for readability. You will need to decide how you will clock devices, possibly even if you will clock them at all.
+A high level (not complete) notional design is depicted in Figure~\ref{fig:data_control_paths}. The clock, reset and other possible needed control signals are implied in this design for readability. You will need to decide how you will clock the devices or not at all.
 
 This lab introduces design decisions in creating and linking different combinational, behavioral and structural components together to work properly in a larger design. Pay careful attention to timing between different components and instructions in different phases of operation (fetch, decode, etc), Figure~\ref{fig:iec} and Figure~\ref{fig:pipeline_instruction_execution_example}.
 
-For example, if you are reading in a new instruction value it must be stored in a register in order to stay stable, likewise every value must be stable before a write occurs. This can be ensured by performing writes during the next cycle or on an edge transitions. Although your design may work in simulation, you will find that the hardware is not as stable and predictable as you would expect. It will take a well laid out RTL designs, timing designs and test procedures to verify and validate your designs. Be precise and well organized. Lay out timing and control signal transitions carefully for each clock cycle to completely develop a working design.
+For example, if you are reading in a new instruction value it must be stored in a register in order to stay stable, likewise every value must be stable before a write occurs. This can be ensured by performing writes during the next cycle or on an edge transitions. Although your design may work in simulation, you will find that the hardware is not as stable and predictable as you would expect. It will take a well laid out RTL designs, timing designs and test procedures to verify and validate your designs. Be precise and well organized for your design and make as much documentation to easily convey your design to the TA/Professor or later on in your career your employer/boss. Lay out timing and control signal transitions carefully for each clock cycle to completely develop a working design.
 
 \begin{figure}[!htbp]
   \centering
@@ -113,9 +113,9 @@ For example, if you are reading in a new instruction value it must be stored in 
 
 \begin{enumerate}
 % Part 1
-  \item Complete the design of the Control Path entity. For this and later labs, this will be the center of your machine. This entity currently consists of possibly the following main components which must be implemented as separate VHDL entities, then integrated into the larger control entity:
+  \item Complete the design of the Control Path entity. For this and later labs, this will be the heart and soul of your machine. This entity currently consists of possibly the following main components which must be implemented as separate VHDL entities, then will be integrated into a larger control entity:
   \begin{itemize}
-    \item \textbf{Program Counter}: Controls the current instruction to be executed. Automatically increments on each clock cycle once started.
+    \item \textbf{Program Counter}: Controls the current instruction to be executed. Automatically increments on each clock cycle once started and later will be able to be edited by the system if need be(JMP).
     \item \textbf{Pipeline Registers}: Multiple 16-bit registers must be created to hold instruction words (and state) for the appropriate pipeline stage.
     \item \textbf{Pipeline Controller}: Facilitates transition of instruction words for each pipeline cycle. Although we only have a few pipeline registers for now, this will be a great help once more stages are added and more sophisticated transitions are required.
     \item \textbf{Control Modules}: Act on the control signals based on the current instruction in the pipeline register for their associated pipeline stage. (i.e. CTRL1 acts on T1, CTRL2 acts on T2). These modules dictate the functionality of the rest of the machine. For example, if your current instruction is a register add, the control modules will decode the instruction to output the control signals for which register to read from, the operation to be performed, the logical flow of data through your FPU, and ultimately where to store it and when to enable the write enable back into the register bank and any other pertinent control signals.
@@ -123,18 +123,18 @@ For example, if you are reading in a new instruction value it must be stored in 
   Capture RTL diagrams of your design for your lab report.
 
 % Part 2
-  \item Create a testbench for your Control entity and verify its outputs are what you expect. Show that each instruction is read sequentially and propagated through pipeline. Verify and show that the control and data signals match your intended design.
+  \item Create a testbench for your control entity and verify its outputs are what you expect. Show that each instruction is read sequentially and propagated through pipeline. Verify and show that the control and data signals match your intended design.
   
   Document your test procedure, print your testbench results, and discuss any problems for your lab report.
 
 % Part 3
-  \item Construct the FPU entity and associated components. This design builds upon the ALU you experienced in Lab 1. For your reference, a sample design has been included in the class directory along with a testbench. If you decide to use some of these design concepts ensure that they fit your design and modify the entities and testbench as necessary.
+  \item Construct the FPU entity and associated components. This design builds upon the ALU from your previous experience in Lab 2. For your reference, a sample design has been included in the class directory along with a testbench. If you decide to use some of these design concepts ensure that they fit your design and modify the entities and testbench as necessary.
   
   There are several components that must be wrapped around your ALU design. These are controlled by the control modules discussed in Step 1. Some notable entities are discussed as follows:
   
   \begin{itemize}
-    \item \textbf{General Purpose Register Bank}: sixteen 16-bit general purpose registers (R0-R15). Similar in structure to the Instruction Memory in the Control entity except it is dual ported. You will have two address inputs, of which only will be written to from the data in din. Both outputs will reference the 16-bit register indexed by the two corresponding addresses.
-    \item \textbf{Shadow Register Bank}: (SR0-SR3) for stack operations, and fast-interrupts supporting I/O operations. Implement but do not worry about implementing in your full architecture just yet.
+    \item \textbf{General Purpose Register Bank}: sixteen 16-bit general purpose registers (R0-R15). Similar in structure to the Instruction Memory in the Control entity except it is dual ported. You will have two address inputs of which only will be written to and from the data in din. Both outputs will reference the 16-bit register indexed by the two corresponding addresses.
+    \item \textbf{Shadow Register Bank}: (SR0-SR3) for stack operations, and fast-interrupts supporting I/O operations. Implement but do not worry about implementing in your full architecture just yet. This will be focus more on in Project Lab 3.
     \item \textbf{Instruction Memory}: Read-only register containing 32, 16-bit words indexed by the address output from the program counter. Create this as a simple VHDL entity and initialize with your desired instruction word values. Since we are only accessing up to 20 instruction words for now, only the least significant five bits of the program counter are needed for instruction memory addressing. Figure~\ref{fig:instruction_format} shows the format of these instructions. You must correctly populate each field depending on the type of instruction you are executing and the desired output.
     \item \textbf{Data Memory}: Read-Write memory containing M, 16-bit words indexed by the address output from the instruction register. Create this as a VHDL entity and initialize with your desired data word values. 
     \item \textbf{Store\_Data Register}: Output from FPU for use in writing results to data memory.
@@ -206,10 +206,20 @@ A10F
 
 \begin{figure}[!htbp]
   \centering
-    \fbox{\includegraphics[width=0.5\textwidth]{images/test_configuration.png}}
+    \fbox{\includegraphics[width=0.8\textwidth]{images/test_configuration.png}}
   \caption{Possible UMD RISC Test configuration}
   \label{fig:test_configuration}
 \end{figure}
+
+\begin{figure}[!htbp]
+  \centering
+    \fbox{\includegraphics[width=0.8\textwidth]{images/RISC_Test_Diagram.png}}
+  \caption{Another Possible UMD RISC Test configuration}
+  \label{fig:test_configuration2}
+\end{figure}
+
+
+\newpage
 
 \section{Deliverables:}
 
@@ -239,6 +249,7 @@ Each lab group should prepare a lab report with the following information:
   \caption{Notional Pipelined Data Path and Control Paths}
   \label{fig:data_control_paths}
 \end{figure}
+
 \newpage
 
 \section{Project Lab 1 Grade}
@@ -249,13 +260,13 @@ Each lab group should prepare a lab report with the following information:
        \hline
        Section & Value & Score\\
        \hline 
-       \multicolumn{1}{|l}{\textbf{Procedure:}}  & -\textbf{60}- &\\
+       \multicolumn{1}{|l}{\textbf{Procedure:}}  & -\textbf{40}- &\\
        \hline
-       1. Design the Control Path Entity & 20 &\\
+       1. Design the Control Path Entity & 10 &\\
        \hline
        2. Simulate Control Entity & 10 &\\
        \hline
-       3. Design the FPU Entity and associate components & 20 &\\
+       3. Design the FPU Entity and associate components & 10 &\\
        \hline
        4. Simulate FPU entity with Control Entity & 5 &\\
        \hline
@@ -263,7 +274,7 @@ Each lab group should prepare a lab report with the following information:
        \hline
        \multicolumn{1}{|l}{\textbf{Deliverables:}}  & -\textbf{20}- &\\
        \hline
-       \multicolumn{1}{|l}{\textbf{Lab Report:}}  & -\textbf{20}- &\\
+       \multicolumn{1}{|l}{\textbf{Lab Report:}}  & -\textbf{40}- &\\
        \hline
        \hline
        \multicolumn{1}{|l}{Total} & \multicolumn{1}{c|}{100} &\\
