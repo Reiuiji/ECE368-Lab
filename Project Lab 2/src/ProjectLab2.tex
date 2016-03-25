@@ -40,12 +40,12 @@
 \begin{center}
 \textsc{\huge ECE 368 Digital Design - Spring 2016}\\[1cm]
 \textsc{{\LARGE Project Lab \#2: (100pts)}}\\[0.5cm]
-\textsc{\Large Lab date: April $1$\textsuperscript{st} and April $8$\textsuperscript{th},2015}\\[0.5cm]
+\textsc{\Large Lab date: April $1$\textsuperscript{st} and April $8$\textsuperscript{th},2016}\\[0.5cm]
 \textsc{\Large Lab Report Due: Wednesday April $15$\textsuperscript{th},2016}\\[1cm]
 \end{center}
 
 \section{Overview and Objectives:}
-In this laboratory assignment, you will use the Xilinx ISE software tools aimed at the Digilent NEXYS2 Board to expand the ISA for the UMD RISC 16 machine to include LWV, SWV, JAL, RTL and BRA instructions. This will require the addition of new components in the data path and control path to support these instructions. In particular you will minimally need to add in an external memory unit, a four element stack to support the JAL and RTL instructions, the four special purpose registers for extended addressing and additional control elements to manage operations of the new instructions. You must test the completed design using self-written instruction sequences described in your test plan and physically demonstrated and documented in your test plans experimental results (actual measurements).
+In this laboratory assignment, you will use the Xilinx ISE software tools aimed at the Digilent NEXYS2 Board to expand the ISA for the UMD RISC 16 machine to include LWV, SWV, JAL, RTL, INT and BRA instructions. This will require the addition of new components in the data path and control path to support these instructions. In particular you will minimally need to add in an external memory unit, a four element stack to support the JAL and RTL instructions, the four special purpose registers for extended addressing and additional control elements to manage operations of the new instructions. You must test the completed design using self-written instruction sequences described in your test plan and physically demonstrated and documented in your test plans experimental results (actual measurements).
 
 In this lab, we will expand on the design achieved in Project Lab 1 to realize the high level RISC Harvard Architecture shown in figure~\ref{fig:harvardarc}.
 
@@ -135,6 +135,11 @@ Implementing external memory in RAMs in VHDL results synthesizing to LUTs rather
 Much of the remaining support elements will consist of registers, multiplexers, new control states, etc. to be utilized for branching, jump and return operations.
 
 % Part 4
+\item Design an interrupt control utility.
+
+For the interrupt controller you should design and build a controller that will monitor the change in state of various inputs. The change in state will be up to you. For example you can design a interrupt that will monitor the change in state and will go high if their is a change.
+
+% Part 5
 \item Test loading a program from a file into your instruction memory and executing it.
 
 A sample “.coe” file has been included for your reference. You will need to indicate that the memory will be loaded using a .coe file(\textbf{instruction\_memory.coe})
@@ -152,10 +157,10 @@ To load these into the instruction memory for the RISC machine to perform the fo
 
 When this is complete, the initialized contents of instruction memory will be that of the sample program.
 
-%Part 5
+%Part 6
 \item Create a hardware debugging interface. 
 
-Integrate the debug unit, PS/2 keyboard and VGA (from Lab 2) into your design to support testing and debug of your design.
+Integrate the PS/2 keyboard and VGA (from Lab 3) as well as the debug unit (from Lab 4) into your design to support testing and debug of your design.
 
 Required basic functionality includes displaying the contents of instruction and data memory, as well as manually changing values into memory in a manner you choose. Additionally, possibly supporting the ability to display contents of both the general purpose and special registers.
 
@@ -199,13 +204,15 @@ Each lab group should prepare a lab report with the following information:
        \hline
        2. Implement Jump Support(JAL,RTL) & 15 &\\
        \hline
-       3. Implement Branching Support(BRA) & 15 &\\
+       3. Implement Branching Support(BRA) & 10 &\\
        \hline
-       4. Test loading a program from a file & 5 &\\
+       4. Design a Interrupt(INT) controller & 5 &\\
        \hline
-       5. Implement a Hardware Debugging Interface & 5 &\\
+       5. Test loading a program from a file & 5 &\\
        \hline
-       6. Show Final Hardware Test & 5 &\\
+       6. Implement a Hardware Debugging Interface & 5 &\\
+       \hline
+       7. Show Final Hardware Test & 5 &\\
        \hline
        \multicolumn{1}{|l}{\textbf{Deliverables:}}  & -\textbf{20}- &\\
        \hline
