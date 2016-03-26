@@ -14,7 +14,6 @@ DemoRubric: DemoRubric.tex
 clean:
 	latexmk -CA
 
-update: ProjectLab3
-	DemoRubric
+update: ProjectLab3 DemoRubric
 	mv ProjectLab3.pdf ../ProjectLab3.pdf
 	mv DemoRubric.pdf ../DemoRubric.pdf
