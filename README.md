@@ -30,7 +30,7 @@ The course will use Xilinx's [14.7 ISE WebPack Edition](http://www.xilinx.com/su
 |:----:|:-----:|:-----------:|:--------:|
 |[1](Project Lab 1/ProjectLab1.pdf) | Control Path, Data Path  | 2016-03-11, 2016-03-25 | 2016-04-01 |
 |[2](Project Lab 2/ProjectLab2.pdf) | Branch, Jump Link, Return, Interrupt  | 2016-04-01, 2016-04-08 | 2016-04-15 |
-|[3](Project Lab 3/ProjectLab3.pdf) | Finalization of RISC | 2016-04-15, 2016-04-22 | 2016-04-29 |
+|[3](Project Lab 3/ProjectLab3.pdf) | Finalization of RISC | 2016-04-15, 2016-04-22 | 2016-05-06 |
 
 ### Download and use
 
