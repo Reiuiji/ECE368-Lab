@@ -39,6 +39,9 @@ This Git Repo uses [git-lfs](https://git-lfs.github.com/) to maintain large bina
 ### Contributors
  * Daniel Noyes
 
+### Resources
+ * [VHDL-Emporium](https://github.com/Reiuiji/VHDL-Emporium): Collection of VHDL code for example.
+
 ### license
 
 The course material presented are available under the MIT License.
