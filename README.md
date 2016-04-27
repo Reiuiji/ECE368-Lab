@@ -9,6 +9,9 @@ This repository contains setup instructions, VHDL examples, Lab assignments and 
 * ISE WebPack 14.7
 * Group with a classmate(2-3 per group)
 
+### Lab Code
+The lab code that was provided for each lab is designed as a learning mechanism. The code has issue's on purpose and its up to you to find the issues. Solution for the code for each lab will be handed out upon request after the completion of the lab assignment.
+
 ### Hardware
 
 The course will focus primary on Digilent's [Nexys™2 Spartan-3E FPGA Board](http://www.digilentinc.com/Products/Detail.cfm?Prod=NEXYS2) as a learning tool.
