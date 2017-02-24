@@ -43,9 +43,13 @@ EMERGE_CHECK=$(which emerge 2> /dev/null) #Gentoo <3
 if [[ ! -z $EMERGE_CHECK ]]; then
     emerge -v libusb fxload
 elif [[ ! -z $PAC_CHECK ]]; then
-    pacman --needed -S libusb wget tar
+    pacman --needed -S libusb 
     # fxload is not in the arch repo, get from the AUR
-    aurinstall_fxload
+    # But first, check to make sure we actually need to install fxload
+    if [[ -z $(pacman -Qs fxload) ]]; then
+        pacman --needed wget tar
+        aurinstall_fxload
+    fi
 elif [[ ! -z $DNF_CHECK ]]; then
     dnf install libusb-devel fxload -y
 elif [[ ! -z $YUM_CHECK ]]; then
